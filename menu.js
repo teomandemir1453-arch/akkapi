@@ -21,7 +21,7 @@ const P=[
  {id:2,n:'Peynirli Poğaça',d:'adet olarak servis edilir',p:50,e:'🧀',f:0,img:G+'1b801c865-bf18-49ee-938d-5d5e6349d9995352.png'},
  {id:3,n:'Simit',d:'adet olarak servis edilir',p:23,e:'🥯',f:0,img:G+'0b801c865-bf18-49ee-938d-5d5e6349d9998143.png'},
  {id:4,n:'Sade Açma',d:'adet olarak servis edilir',p:40,e:'🥨',f:0,img:G+'5b801c865-bf18-49ee-938d-5d5e6349d9999787.png'},
- {id:5,n:'Fırın Sütlaç',d:'adet olarak servis edilir',p:130,e:'🍮',f:1,chef:1,img:G+'4b801c865-bf18-49ee-938d-5d5e6349d9996863.png'},
+ {id:5,n:'Fırın Sütlaç',d:'adet olarak servis edilir',p:132,e:'🍮',f:1,chef:1,img:G+'4b801c865-bf18-49ee-938d-5d5e6349d9996863.png'},
  {id:6,n:'Kazandibi',d:'adet olarak servis edilir',p:140,e:'🍮',f:1,img:G+'0b801c865-bf18-49ee-938d-5d5e6349d9993568.png'},
  {id:7,n:'Çikolatalı Puding',d:'tek kişilik',p:140,e:'🍫',f:1,img:''},
  {id:8,n:'Çikolatalı Profiterol',d:'tek kişilik',p:160,e:'🧁',f:1,img:G+'3b801c865-bf18-49ee-938d-5d5e6349d9994255.png'},
