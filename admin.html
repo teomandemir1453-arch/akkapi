@@ -9,7 +9,7 @@
  body{font-family:Manrope,sans-serif;background:#20140D;color:#FFF7EE;margin:0;padding:14px}
  h1{font-size:19px;margin:0 0 10px} h2{font-size:14px;color:#D9A441;margin:16px 0 6px}
  .card{background:#2b1c12;border:1px solid #3d2a1a;border-radius:14px;padding:12px;margin-bottom:10px}
- input,select,textarea{width:100%;background:#170e08;color:#FFF7EE;border:1px solid #3d2a1a;border-radius:10px;padding:10px;font:500 14px Manrope;margin-bottom:8px;box-sizing:border-box}
+ input,select{width:100%;background:#170e08;color:#FFF7EE;border:1px solid #3d2a1a;border-radius:10px;padding:10px;font:500 14px Manrope;margin-bottom:8px;box-sizing:border-box}
  input[type=color]{padding:2px;height:42px} input[type=checkbox]{width:auto}
  button{border:0;border-radius:10px;padding:11px 16px;font:700 13px Manrope;cursor:pointer}
  .p{background:#C42B4E;color:#fff}.g{background:#3d2a1a;color:#FFF7EE}.w{background:#25D366;color:#062}
@@ -23,8 +23,8 @@
 </head>
 <body>
 <h1>🥐 Admin Paneli</h1>
-<div id="login" class="card"><small>GitHub token (bir kez):</small>
- <input type="password" id="tok" placeholder="ghp_..."><button class="p" onclick="login()">Giriş</button></div>
+<div id="loginbox" class="card"><small>GitHub token (bir kez):</small>
+ <input type="password" id="tok" placeholder="ghp_..."><button class="p" onclick="giris()">Giriş</button></div>
 
 <div id="app" style="display:none">
  <div class="card"><span class="ok">●</span> <small id="who"></small>
@@ -39,71 +39,69 @@
 
  <div class="pane on" id="pn0"><div class="card">
   <small>Uygulama adı / slogan:</small>
-  <div class="row"><input id="c-name"><input id="c-tag"></div>
+  <div class="row"><input id="c_name"><input id="c_tag"></div>
   <small>Logo:</small><input type="file" accept="image/*" onchange="upLogo(this)">
   <small>Ana renk / zemin:</small>
-  <div class="row"><input type="color" id="c-primary"><input type="color" id="c-bg"></div>
-  <small>Instagram / çalışma saatleri:</small>
-  <input id="c-ig">
-  <div class="row"><input type="time" id="c-open"><input type="time" id="c-close"></div>
+  <div class="row"><input type="color" id="c_primary"><input type="color" id="c_bg"></div>
+  <small>Instagram:</small><input id="c_ig">
+  <small>Saatler:</small>
+  <div class="row"><input type="time" id="c_open"><input type="time" id="c_close"></div>
  </div></div>
 
  <div class="pane" id="pn1"><div id="prods"></div><button class="g" onclick="addProd()">+ Ürün Ekle</button></div>
-
  <div class="pane" id="pn2"><div id="cats"></div><button class="g" onclick="addCat()">+ Kategori</button></div>
 
  <div class="pane" id="pn3"><div class="card">
-  <div class="row"><input id="f-wa" placeholder="WhatsApp 90..."><input id="f-poset" type="number" placeholder="Poşet ₺"></div>
-  <small>Kuponlar (KOD:yüzde, virgülle):</small><input id="f-codes">
-  <small>Sipariş kanalı (ntfy topic, opsiyonel):</small><input id="f-ntfy" placeholder="örn. ciragan-siparis-8f3k">
+  <div class="row"><input id="f_wa" placeholder="WhatsApp 90..."><input id="f_poset" type="number" placeholder="Poşet ₺"></div>
+  <small>Kuponlar (KOD:yüzde, virgülle):</small><input id="f_codes">
+  <small>ntfy topic (opsiyonel):</small><input id="f_ntfy">
   <h2>Şube 1</h2>
-  <div class="row"><input id="by-n"><input id="by-t"></div><input id="by-a"><input id="by-g" placeholder="koordinat">
+  <div class="row"><input id="by_n"><input id="by_t"></div><input id="by_a"><input id="by_g" placeholder="koordinat">
   <h2>Şube 2</h2>
-  <div class="row"><input id="bk-n"><input id="bk-t"></div><input id="bk-a"><input id="bk-g" placeholder="koordinat">
+  <div class="row"><input id="bk_n"><input id="bk_t"></div><input id="bk_a"><input id="bk_g" placeholder="koordinat">
  </div></div>
 
  <div class="pane" id="pn4"><div class="card">
-  <small>Tüm ayarı JSON indir (başka müşteriye taşı):</small>
-  <button class="g" onclick="exp()">⬇ Dışa Aktar</button>
+  <button class="g" onclick="exp()"> Dışa Aktar</button>
   <small>JSON yükle:</small><input type="file" accept=".json" onchange="imp(this)">
  </div></div>
 </div>
 
 <script>
 const OWNER='teomandemir1453-arch', REPO='akkapi';
+const $=id=>document.getElementById(id);
 let TOKEN=localStorage.gh_token||'', M=null;
 const b64e=s=>btoa(unescape(encodeURIComponent(s))), b64d=s=>decodeURIComponent(escape(atob(s)));
 const DEF={name:'Çırağan Sarayı',tag:'taze · günlük · el yapımı · adana',primary:'#C42B4E',bg:'#FFF7EE',
  ig:'https://www.instagram.com/akkapi.ciragansarayi/',open:'08:45',close:'24:00',ntfy:''};
-async function api(p,o={}){ const r=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/${p}`,
+async function api(p,o={}){ const r=await fetch('https://api.github.com/repos/'+OWNER+'/'+REPO+'/'+p,
  Object.assign({headers:{'Authorization':'token '+TOKEN,'Accept':'application/vnd.github+json'}},o));
- if(!r.ok) throw new Error((await r.text()).slice(0,160)); return r.json(); }
-async function login(){ TOKEN=document.getElementById('tok').value.trim(); localStorage.gh_token=TOKEN; boot(); }
+ if(!r.ok) throw new Error(p+' → HTTP '+r.status); return r.json(); }
+function giris(){ TOKEN=$('tok').value.trim(); localStorage.gh_token=TOKEN; boot(); }
 async function boot(){ try{
  const f=await api('contents/menu.js'); M=parse(b64d(f.content)); M._sha=f.sha;
  M.CFG=Object.assign({},DEF,M.CFG);
-  document.getElementById('login').style.display='none';
- document.getElementById('app').style.display='block';
- document.getElementById('who').textContent=OWNER+'/'+REPO; fill();
- }catch(e){ alert('Hata: '+e.message); localStorage.gh_token=''; } }
+ $('loginbox').style.display='none'; $('app').style.display='block';
+ $('who').textContent=OWNER+'/'+REPO; fill();
+ }catch(e){ alert('Giriş hatası: '+e.message); } }
 function parse(s){ return new Function(s+'\nreturn {P,CATS,TODAY,WA,BR,CODES,POSET,CFG:(typeof CFG!=="undefined"?CFG:null)};')(); }
 function tab(i,el){ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on')); el.classList.add('on');
  document.querySelectorAll('.pane').forEach((p,k)=>p.classList.toggle('on',k===i)); }
 function fill(){ const c=M.CFG;
- c_name.value=c.name; c_tag.value=c.tag; c_primary.value=c.primary; c_bg.value=c.bg;
- c_ig.value=c.ig; c_open.value=c.open; c_close.value=c.close;
- f_wa.value=M.WA; f_poset.value=M.POSET; f_ntfy.value=c.ntfy||'';
- f_codes.value=Object.entries(M.CODES).map(([k,v])=>k+':'+v).join(', ');
- by_n.value=M.BR.y.n; by_a.value=M.BR.y.a; by_t.value=M.BR.y.t; by_g.value=M.BR.y.g;
- bk_n.value=M.BR.k.n; bk_a.value=M.BR.k.a; bk_t.value=M.BR.k.t; bk_g.value=M.BR.k.g;
+ $('c_name').value=c.name; $('c_tag').value=c.tag; $('c_primary').value=c.primary; $('c_bg').value=c.bg;
+ $('c_ig').value=c.ig; $('c_open').value=c.open; $('c_close').value=c.close;
+ $('f_wa').value=M.WA; $('f_poset').value=M.POSET; $('f_ntfy').value=c.ntfy||'';
+ $('f_codes').value=Object.entries(M.CODES).map(([k,v])=>k+':'+v).join(', ');
+ $('by_n').value=M.BR.y.n; $('by_a').value=M.BR.y.a; $('by_t').value=M.BR.y.t; $('by_g').value=M.BR.y.g;
+ $('bk_n').value=M.BR.k.n; $('bk_a').value=M.BR.k.a; $('bk_t').value=M.BR.k.t; $('bk_g').value=M.BR.k.g;
  drawCats(); drawProds(); }
-function drawCats(){ cats.innerHTML=M.CATS.map((x,i)=>`<div class="card row">
+function drawCats(){ $('cats').innerHTML=M.CATS.map((x,i)=>`<div class="card row">
  <input value="${x.e}" oninput="M.CATS[${i}].e=this.value">
  <input value="${x.l}" oninput="M.CATS[${i}].l=this.value">
  <input type="color" value="${x.m}" oninput="M.CATS[${i}].m=this.value">
  <input type="color" value="${x.s}" oninput="M.CATS[${i}].s=this.value">
  <button class="g" onclick="M.CATS.splice(${i},1);drawCats();drawProds()">Sil</button></div>`).join(''); }
-function drawProds(){ prods.innerHTML=M.P.map((p,i)=>`<div class="card">
+function drawProds(){ $('prods').innerHTML=M.P.map((p,i)=>`<div class="card">
  <div class="row"><input value="${p.e}" oninput="M.P[${i}].e=this.value">
  <input value="${p.n}" oninput="M.P[${i}].n=this.value">
  <input type="number" value="${p.p}" oninput="M.P[${i}].p=+this.value"></div>
@@ -122,23 +120,25 @@ async function put(path,b64,msg){ let sha=null; try{ sha=(await api('contents/'+
  await api('contents/'+path,{method:'PUT',body:JSON.stringify({message:msg,content:b64,sha})}); }
 async function file64(inp){ const f=inp.files[0]; if(!f)return null;
  const d=await new Promise(r=>{const x=new FileReader();x.onload=r;x.readAsDataURL(f);}); return d.target.result.split(',')[1]; }
-async function upImg(inp,id){ const b=await file64(inp); if(!b)return;
- await put('urunler/'+id+'.jpg',b,'görsel '+id); alert('Görsel yüklendi ✅'); }
-async function upLogo(inp){ const b=await file64(inp); if(!b)return;
- await put('logo.png',b,'logo'); alert('Logo yüklendi ✅'); }
-function readCFG(){ return {name:c_name.value,tag:c_tag.value,primary:c_primary.value,bg:c_bg.value,
- ig:c_ig.value,open:c_open.value,close:c_close.value,ntfy:f_ntfy.value.trim()}; }
+async function upImg(inp,id){ try{ const b=await file64(inp); if(!b)return;
+ await put('urunler/'+id+'.jpg',b,'görsel '+id); alert('Görsel yüklendi ✅'); }catch(e){ alert('Görsel hatası: '+e.message); } }
+async function upLogo(inp){ try{ const b=await file64(inp); if(!b)return;
+ await put('logo.png',b,'logo'); alert('Logo yüklendi ✅'); }catch(e){ alert('Logo hatası: '+e.message); } }
+function readCFG(){ return {name:$('c_name').value,tag:$('c_tag').value,primary:$('c_primary').value,bg:$('c_bg').value,
+ ig:$('c_ig').value,open:$('c_open').value,close:$('c_close').value,ntfy:$('f_ntfy').value.trim()}; }
 function build(){ M.CFG=readCFG();
- const codes=f_codes.value.split(',').map(s=>s.trim()).filter(Boolean).map(s=>{const[k,v]=s.split(':');return `'${k.trim()}':${+v||0}`;}).join(',');
- return `/* ÇIRAĞAN SARAYI — admin üretti */\nconst CFG=${JSON.stringify(M.CFG)};\nconst POSET=${+f_poset.value||1};\nconst WA='${f_wa.value}';\nconst CODES={${codes}};\nconst TODAY=[${M.TODAY.join(',')}];\nconst BR={\n y:{n:'${by_n.value}',a:'${by_a.value}',t:'${by_t.value}',g:'${by_g.value}'},\n k:{n:'${bk_n.value}',a:'${bk_a.value}',t:'${bk_t.value}',g:'${bk_g.value}'}};\nconst CATS=${JSON.stringify(M.CATS)};\nconst P=${JSON.stringify(M.P.map(p=>({id:p.id,n:p.n,d:p.d,p:p.p,e:p.e,f:p.f,img:p.img||'',chef:p.chef?1:0})))};\n`; }
+ const codes=$('f_codes').value.split(',').map(s=>s.trim()).filter(Boolean)
+   .map(s=>{const[k,v]=s.split(':');return `'${k.trim()}':${+v||0}`;}).join(',');
+ return `/* admin üretti */\nconst CFG=${JSON.stringify(M.CFG)};\nconst POSET=${+$('f_poset').value||1};\nconst WA='${$('f_wa').value}';\nconst CODES={${codes}};\nconst TODAY=[${M.TODAY.join(',')}];\nconst BR={\n y:{n:'${$('by_n').value}',a:'${$('by_a').value}',t:'${$('by_t').value}',g:'${$('by_g').value}'},\n k:{n:'${$('bk_n').value}',a:'${$('bk_a').value}',t:'${$('bk_t').value}',g:'${$('bk_g').value}'}};\nconst CATS=${JSON.stringify(M.CATS)};\nconst P=${JSON.stringify(M.P.map(p=>({id:p.id,n:p.n,d:p.d,p:p.p,e:p.e,f:p.f,img:p.img||'',chef:p.chef?1:0})))};\n`; }
 async function publish(){ if(!confirm('Yayınlanacak, müşteriler günceli görür. Emin misin?'))return;
- await put('menu.js',b64e(build()),'admin: menü güncellendi'); alert('YAYINLANDI 🚀'); }
+ try{ await put('menu.js',b64e(build()),'admin: menü güncellendi'); alert('YAYINLANDI 🚀'); }
+ catch(e){ alert('YAYINLANAMADI ❌ '+e.message); } }
 function exp(){ const a=document.createElement('a');
- a.href=URL.createObjectURL(new Blob([JSON.stringify({CFG:readCFG(),POSET:+f_poset.value,WA:f_wa.value,CODES:f_codes.value,TODAY:M.TODAY,BR:{y:{n:by_n.value,a:by_a.value,t:by_t.value,g:by_g.value},k:{n:bk_n.value,a:bk_a.value,t:bk_t.value,g:bk_g.value}},CATS:M.CATS,P:M.P},null,1)]));
+ a.href=URL.createObjectURL(new Blob([JSON.stringify({CFG:readCFG(),POSET:+$('f_poset').value,WA:$('f_wa').value,CODES:$('f_codes').value,TODAY:M.TODAY,BR:M.BR,CATS:M.CATS,P:M.P},null,1)]));
  a.download='pastane-config.json'; a.click(); }
 async function imp(inp){ const f=inp.files[0]; if(!f)return; const j=JSON.parse(await f.text());
- M.CFG=Object.assign({},DEF,j.CFG); M.POSET=j.POSET; M.WA=j.WA; M.CODES={}; M.TODAY=j.TODAY||[]; M.BR=j.BR; M.CATS=j.CATS; M.P=j.P;
- f_codes.value=j.CODES||''; fill(); alert('Yüklendi → YAYINLA de ✅'); }
+ M.CFG=Object.assign({},DEF,j.CFG); M.POSET=j.POSET; M.WA=j.WA; M.TODAY=j.TODAY||[]; M.BR=j.BR; M.CATS=j.CATS; M.P=j.P;
+ $('f_codes').value=j.CODES||''; fill(); alert('Yüklendi → YAYINLA de ✅'); }
 if(TOKEN) boot();
 </script>
 </body>
