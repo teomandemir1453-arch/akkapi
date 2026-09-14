@@ -441,7 +441,14 @@ textarea.fld{min-height:70px;resize:vertical}
     </div>
     <button class="btn primary block" id="d-cta" onclick="addCur()"></button>
   </section>
-
+<div id="install-bar" style="display:none;position:absolute;left:12px;right:12px;bottom:78px;z-index:30;
+  background:var(--vitrin);border:1px solid rgba(217,164,65,.35);border-radius:var(--r-card);
+  padding:12px 14px;align-items:center;gap:10px;color:#fff">
+  <span class="logoWrap" style="width:38px;height:38px"><svg class="lsvg"><use href="#logoSVG"/></svg></span>
+  <div style="flex:1;font:600 12px var(--ui)">Telefona kur — <b style="color:var(--gold)">app gibi</b> açılır, logon cebinde kalır</div>
+  <button class="btn mini primary" onclick="installApp()">Kur</button>
+  <button class="btn mini ghost" style="color:#fff" onclick="hideInstall()">✕</button>
+</div>
   <nav class="tabbar">
     <button class="tab on" data-s="home" onclick="go('home')"><span class="ms">home</span>Vitrin</button>
     <button class="tab" data-s="cats" onclick="go('cats')"><span class="ms">bakery_dining</span>Menü</button>
@@ -811,6 +818,21 @@ loadLogos(); chips(); grid(); cats(); badge(); todayRow();
 setTimeout(()=>go('onb'),1600);
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 setTimeout(()=>document.querySelectorAll('a[href*="netlify"],[id*="netlify-badge"],[class*="netlify-badge"]').forEach(e=>e.remove()),600);
+/* ---- APP GİBİ KUR (PWA) ---- */
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e;
+  if(!localStorage.cs_hideinstall) $('#install-bar').style.display='flex'; });
+function installApp(){
+  if(!deferredPrompt){ alert('Chrome menüsü (⋮) → "Ana ekrana ekle" de; iPhone\'da: Paylaş → Ana Ekrana Ekle 📲'); return; }
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; $('#install-bar').style.display='none'; });
+}
+function hideInstall(){ $('#install-bar').style.display='none'; localStorage.cs_hideinstall='1'; }
+if(/iphone|ipad/i.test(navigator.userAgent) && !localStorage.cs_hideinstall && !window.standalone){
+  window.standalone=true;
+  setTimeout(()=>{ $('#install-bar').style.display='flex';
+    $('#install-bar').querySelector('b').textContent='Paylaş → Ana Ekrana Ekle'; },2500);
+}
 </script>
 </body>
 </html>
