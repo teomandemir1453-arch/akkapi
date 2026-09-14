@@ -281,7 +281,7 @@ textarea.fld{min-height:70px;resize:vertical}
     <div class="mrow" onclick="wipeCart()"><span class="ms">delete_sweep</span>Sepeti temizle<span class="ms chev">chevron_right</span></div>
     <div class="mrow" onclick="wipeFav()"><span class="ms">heart_broken</span>Favorileri temizle<span class="ms chev">chevron_right</span></div>
     <div class="mrow" style="color:var(--primary)" onclick="resetApp()"><span class="ms" style="color:var(--primary)">restart_alt</span>Uygulamayı sıfırla<span class="ms chev">chevron_right</span></div>
-    <p style="font-size:11px;color:var(--text2);margin-top:16px;text-align:center">Çırağan Sarayı v14 · Adana · @akkapi.ciragansarayi</p>
+    <p style="font-size:11px;color:var(--text2);margin-top:16px;text-align:center">Çırağan Sarayı v15 · Adana · @akkapi.ciragansarayi</p>
     <button class="btn ghost block" onclick="go('profile')">Geri</button>
   </section>
   <section class="screen" id="sc-cake">
@@ -655,14 +655,16 @@ function sendBasket(){
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e;
   if(!localStorage.cs_hideinstall) $('#install-bar').style.display='flex'; });
+window.addEventListener('appinstalled',()=>{ $('#install-bar').style.display='none'; localStorage.cs_hideinstall='1'; });
 function installApp(){
-  if(!deferredPrompt){ alert('Chrome menüsü (⋮) → "Ana ekrana ekle"; iPhone\'da: Paylaş → Ana Ekrana Ekle 📲'); return; }
-  deferredPrompt.prompt();
-  deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; $('#install-bar').style.display='none'; }); }
+  if(deferredPrompt){ deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; $('#install-bar').style.display='none'; }); return; }
+  alert('Chrome ⋮ menüsü → "Ana ekrana ekle / Uygulamayı yükle"; iPhone\'da: Paylaş → Ana Ekrana Ekle 📲');
+}
 function hideInstall(){ $('#install-bar').style.display='none'; localStorage.cs_hideinstall='1'; }
-if(/iphone|ipad/i.test(navigator.userAgent)&&!localStorage.cs_hideinstall){
-  setTimeout(()=>{ $('#install-bar').style.display='flex';
-    $('#install-bar').querySelector('b').textContent='Paylaş → Ana Ekrana Ekle'; },2500); }
+setTimeout(()=>{ if(!deferredPrompt&&!localStorage.cs_hideinstall&&$('#install-bar').style.display!=='flex'){
+  $('#install-bar').style.display='flex';
+  $('#install-bar').querySelector('b').textContent='Chrome ⋮ → Ana ekrana ekle'; } },5000);
 loadLogos(); chips(); grid(); cats(); badge(); todayRow();
 setTimeout(()=>go('onb'),1600);
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
