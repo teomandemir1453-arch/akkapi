@@ -1,0 +1,10 @@
+{
+  "name": "Çırağan Sarayı — Pasta & Fırın",
+  "short_name": "Çırağan Sarayı",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FFF7EE",
+  "theme_color": "#C42B4E",
+  "description": "Adana'nın taze pastanesi: vitrin, sipariş, özel pasta.",
+  "icons": []
+}
