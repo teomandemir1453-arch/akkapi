@@ -82,7 +82,9 @@ async function login(){ TOKEN=document.getElementById('tok').value.trim(); local
 async function boot(){ try{
  const f=await api('contents/menu.js'); M=parse(b64d(f.content)); M._sha=f.sha;
  M.CFG=Object.assign({},DEF,M.CFG);
- login.style.display='none'; app.style.display='block'; who.textContent=OWNER+'/'+REPO; fill();
+  document.getElementById('login').style.display='none';
+ document.getElementById('app').style.display='block';
+ document.getElementById('who').textContent=OWNER+'/'+REPO; fill();
  }catch(e){ alert('Hata: '+e.message); localStorage.gh_token=''; } }
 function parse(s){ return new Function(s+'\nreturn {P,CATS,TODAY,WA,BR,CODES,POSET,CFG:(typeof CFG!=="undefined"?CFG:null)};')(); }
 function tab(i,el){ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on')); el.classList.add('on');
