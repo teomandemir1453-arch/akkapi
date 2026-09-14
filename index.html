@@ -6,7 +6,7 @@
 <title>Çırağan Sarayı — Pasta & Fırın</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#C42B4E">
-  <link rel="apple-touch-icon" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#FFF7EE">
@@ -37,8 +37,7 @@ body{background:#E9DFD3;font-family:var(--ui);color:var(--text1)}
 .screen.on{display:block}
 #sc-onb,#sc-splash{padding:0}
 #sc-splash.on{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;cursor:pointer}
-.ms{font-family:'Material Symbols Outlined';font-size:22px;line-height:1;
-  font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+.ms{font-family:'Material Symbols Outlined';font-size:22px;line-height:1;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
 .script{font-family:var(--script);color:var(--caramel);font-size:18px}
 .disp{font-family:var(--display)}
 .logoWrap{position:relative;flex:none;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center}
@@ -53,8 +52,7 @@ body{background:#E9DFD3;font-family:var(--ui);color:var(--text1)}
 .btn.mini{padding:9px 16px;font-size:12.5px}
 .slide{display:none;height:100%;flex-direction:column;align-items:center;text-align:center;padding:36px 26px 28px}
 .slide.on{display:flex}
-.arch{width:100%;flex:1;max-height:380px;border-radius:170px 170px 24px 24px;border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;font-size:92px;position:relative;overflow:hidden}
+.arch{width:100%;flex:1;max-height:380px;border-radius:170px 170px 24px 24px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:92px}
 .dots{display:flex;gap:6px;justify-content:center;margin:20px 0}
 .dot{width:7px;height:7px;border-radius:99px;background:var(--border);transition:.2s}
 .dot.on{width:22px;background:var(--primary)}
@@ -62,19 +60,14 @@ body{background:#E9DFD3;font-family:var(--ui);color:var(--text1)}
 .hrow{display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .status{font:700 11px var(--ui);display:flex;align-items:center;gap:6px}
 .status i{width:7px;height:7px;border-radius:50%;background:currentColor}
-.bag{position:relative;width:44px;height:44px;flex:none;background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--r-pill);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--choco)}
-.bag b{position:absolute;top:-3px;right:-3px;background:var(--primary);color:#fff;font:800 10px var(--ui);
-  padding:2px 6px;border-radius:var(--r-pill);border:2px solid var(--bg)}
-.search,.fld{width:100%;border:1px solid var(--border);border-radius:var(--r-input);background:var(--surface);
-  padding:13px 14px;font:500 14px var(--ui);color:var(--text1);outline:none;margin-bottom:10px}
+.bag{position:relative;width:44px;height:44px;flex:none;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-pill);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--choco)}
+.bag b{position:absolute;top:-3px;right:-3px;background:var(--primary);color:#fff;font:800 10px var(--ui);padding:2px 6px;border-radius:var(--r-pill);border:2px solid var(--bg)}
+.search,.fld{width:100%;border:1px solid var(--border);border-radius:var(--r-input);background:var(--surface);padding:13px 14px;font:500 14px var(--ui);color:var(--text1);outline:none;margin-bottom:10px}
 .search:focus,.fld:focus{border-color:var(--primary);box-shadow:0 0 0 1.5px var(--primary)}
 textarea.fld{min-height:70px;resize:vertical}
-.pill{border:1px solid var(--border);background:var(--surface);border-radius:var(--r-pill);
-  padding:9px 16px;font:700 12.5px var(--ui);color:var(--text2);cursor:pointer}
+.pill{border:1px solid var(--border);background:var(--surface);border-radius:var(--r-pill);padding:9px 16px;font:700 12.5px var(--ui);color:var(--text2);cursor:pointer}
 .pill.on{background:var(--primary-soft);border-color:var(--primary);color:var(--primary)}
-.banner{background:var(--vitrin);border:1px solid rgba(217,164,65,.35);border-radius:var(--r-card);
-  padding:18px;color:#fff;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;cursor:pointer}
+.banner{background:var(--vitrin);border:1px solid rgba(217,164,65,.35);border-radius:var(--r-card);padding:18px;color:#fff;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;cursor:pointer}
 .banner .script{color:var(--gold)}
 .banner h3{font:700 19px var(--display);margin:3px 0}
 .banner p{font-size:12px;color:rgba(255,255,255,.65)}
@@ -83,55 +76,40 @@ textarea.fld{min-height:70px;resize:vertical}
 .mini .tile{height:78px;font-size:32px;margin:6px}
 .mini .pinfo{padding:2px 8px 8px}
 .chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:16px;scrollbar-width:none}
-.chip{flex:none;border-radius:var(--r-pill);padding:10px 16px;font:700 13px var(--ui);
-  border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer}
+.chip{flex:none;border-radius:var(--r-pill);padding:10px 16px;font:700 13px var(--ui);border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .pcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;cursor:pointer;transition:.16s}
 .pcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-cta)}
-.tile{height:112px;margin:8px;border-radius:var(--r-tile);position:relative;
-  display:flex;align-items:center;justify-content:center;font-size:44px}
+.tile{height:112px;margin:8px;border-radius:var(--r-tile);position:relative;display:flex;align-items:center;justify-content:center;font-size:44px}
 .tile img,.ctile img,.darch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .tile img{border-radius:var(--r-tile)}
-.badge{position:absolute;top:6px;left:6px;z-index:2;background:var(--gold);color:var(--vitrin);
-  font:600 14px var(--script);padding:2px 9px;border-radius:var(--r-pill)}
-.favb{position:absolute;top:6px;right:6px;z-index:2;border:0;background:rgba(255,255,255,.88);
-  border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.badge{position:absolute;top:6px;left:6px;z-index:2;background:var(--gold);color:var(--vitrin);font:600 14px var(--script);padding:2px 9px;border-radius:var(--r-pill)}
+.favb{position:absolute;top:6px;right:6px;z-index:2;border:0;background:rgba(255,255,255,.88);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .favb .ms{font-size:16px;color:var(--primary)}
 .pinfo{padding:2px 12px 12px}
 .pname{font:600 14.5px var(--display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pdesc{font-size:11px;color:var(--text2);margin:2px 0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .prow{display:flex;align-items:center;justify-content:space-between}
 .price{font-weight:800;font-size:15px}
-.add{width:34px;height:34px;border-radius:12px;background:var(--primary);color:#fff;border:0;
-  display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow-cta)}
-.igt{flex:none;width:110px;height:110px;border-radius:var(--r-tile);display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:4px;text-decoration:none}
+.add{width:34px;height:34px;border-radius:12px;background:var(--primary);color:#fff;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow-cta)}
+.igt{flex:none;width:110px;height:110px;border-radius:var(--r-tile);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-decoration:none}
 .igt span{font-size:34px}.igt b{font:600 15px var(--script);color:var(--caramel)}
 .tabbar{position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);display:flex;padding:10px 6px 14px}
 .phone.notab .tabbar{display:none}
-.tab{flex:1;position:relative;border:0;background:none;color:var(--text2);font:600 10.5px var(--ui);
-  display:grid;justify-items:center;gap:3px;cursor:pointer}
+.tab{flex:1;position:relative;border:0;background:none;color:var(--text2);font:600 10.5px var(--ui);display:grid;justify-items:center;gap:3px;cursor:pointer}
 .tab.on{color:var(--primary)}
 .tab.on .ms{font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24}
-.darch{height:300px;border-radius:150px 150px 24px 24px;border:1px solid var(--border);position:relative;
-  display:flex;align-items:center;justify-content:center;font-size:100px;margin:6px 0 18px;overflow:hidden}
-.back{position:absolute;top:14px;left:14px;z-index:2;width:38px;height:38px;border-radius:var(--r-pill);border:0;
-  background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow-card)}
-.stepper{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--r-pill);padding:6px 10px}
+.darch{height:300px;border-radius:150px 150px 24px 24px;border:1px solid var(--border);position:relative;display:flex;align-items:center;justify-content:center;font-size:100px;margin:6px 0 18px;overflow:hidden}
+.back{position:absolute;top:14px;left:14px;z-index:2;width:38px;height:38px;border-radius:var(--r-pill);border:0;background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow-card)}
+.stepper{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-pill);padding:6px 10px}
 .stepper button{border:0;background:none;font-size:20px;color:var(--primary);cursor:pointer}
-.crow{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--r-card);padding:10px;margin-bottom:12px}
-.ctile{width:64px;height:64px;flex:none;border-radius:var(--r-tile);position:relative;
-  display:flex;align-items:center;justify-content:center;font-size:30px}
-.catrow{display:flex;align-items:center;gap:14px;padding:16px;border-radius:var(--r-card);
-  margin-bottom:12px;cursor:pointer;border:1px solid var(--border)}
-.mrow{display:flex;align-items:center;gap:12px;padding:15px 4px;border-bottom:1px solid var(--border);
-  font:600 14px var(--ui);cursor:pointer}
+.crow{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:10px;margin-bottom:12px}
+.ctile{width:64px;height:64px;flex:none;border-radius:var(--r-tile);position:relative;display:flex;align-items:center;justify-content:center;font-size:30px}
+.catrow{display:flex;align-items:center;gap:14px;padding:16px;border-radius:var(--r-card);margin-bottom:12px;cursor:pointer;border:1px solid var(--border)}
+.mrow{display:flex;align-items:center;gap:12px;padding:15px 4px;border-bottom:1px solid var(--border);font:600 14px var(--ui);cursor:pointer}
 .mrow .ms{font-size:20px;color:var(--choco)}
 .mrow .ms.chev{margin-left:auto;font-size:16px;color:var(--text2)}
-.mrow small{margin-left:auto;font:700 11px var(--ui);color:var(--text2);background:var(--surface);
-  border:1px solid var(--border);border-radius:var(--r-pill);padding:2px 8px}
+.mrow small{margin-left:auto;font:700 11px var(--ui);color:var(--text2);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-pill);padding:2px 8px}
 .trow{display:flex;justify-content:space-between;padding:6px 4px;font:600 13px var(--ui);color:var(--text2)}
 .tl div{display:flex;gap:10px;align-items:flex-start;font:600 13px var(--ui);color:var(--text2);padding:6px 0}
 .tl i{width:12px;height:12px;border-radius:50%;background:var(--border);margin-top:2px;flex:none}
@@ -143,10 +121,8 @@ textarea.fld{min-height:70px;resize:vertical}
 .swt.on{background:var(--pistachio)}
 .swt i{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}
 .swt.on i{left:21px}
-.lrow{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--r-card);padding:12px;margin-bottom:10px}
-.lrow .ic{width:38px;height:38px;flex:none;border-radius:12px;background:var(--primary-soft);
-  display:flex;align-items:center;justify-content:center;color:var(--primary)}
+.lrow{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:12px;margin-bottom:10px}
+.lrow .ic{width:38px;height:38px;flex:none;border-radius:12px;background:var(--primary-soft);display:flex;align-items:center;justify-content:center;color:var(--primary)}
 .leaflet-container{font-family:var(--ui);border-radius:var(--r-card)}
 </style>
 </head>
@@ -164,19 +140,14 @@ textarea.fld{min-height:70px;resize:vertical}
   <text x="100" y="116" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-weight="600" font-size="30" fill="#FFFFFF" letter-spacing="2">ÇIRAGAN</text>
   <text x="100" y="146" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-weight="600" font-size="30" fill="#FFFFFF" letter-spacing="6">SARAYI</text>
   <path d="M48,158 Q100,176 152,158" stroke="#E8932A" stroke-width="4" fill="none" stroke-linecap="round"/>
-  <text x="100" y="176" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-weight="800" font-size="13"
-    fill="#E0632F" stroke="#FFFFFF" stroke-width="2.5" paint-order="stroke" letter-spacing="1">PASTA - FIRIN</text>
+  <text x="100" y="176" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-weight="800" font-size="13" fill="#E0632F" stroke="#FFFFFF" stroke-width="2.5" paint-order="stroke" letter-spacing="1">PASTA - FIRIN</text>
  </symbol>
 </svg>
-
 <div class="stage"><div class="phone notab" id="phone">
-
   <section class="screen on" id="sc-splash" onclick="go('onb')">
-    <span class="logoWrap" style="width:180px;height:180px">
-      <svg class="lsvg"><use href="#logoSVG"/></svg><img data-logo alt="Çırağan Sarayı"></span>
+    <span class="logoWrap" style="width:180px;height:180px"><svg class="lsvg"><use href="#logoSVG"/></svg><img data-logo alt="Çırağan Sarayı"></span>
     <div class="script" style="font-size:21px">taze · günlük · el yapımı · adana</div>
   </section>
-
   <section class="screen" id="sc-onb">
     <div class="slide on">
       <div class="arch" style="background:linear-gradient(160deg,#FBE3E8,#FAEEDC)">🍰</div>
@@ -184,9 +155,7 @@ textarea.fld{min-height:70px;resize:vertical}
       <div class="script">günün üretimi 08:45'te vitrinde ♨</div>
       <h2 class="disp" style="font-size:26px;font-weight:800;margin:4px 0 8px">Vitrin her sabah taze</h2>
       <p style="font-size:13.5px;color:var(--text2)">Ustalarımız geceden başlar;<br>sen uyanınca vitrin hazır.</p>
-      <div class="onbrow" style="margin-top:24px">
-        <button class="btn ghost" onclick="go('home')">Geç</button>
-        <button class="btn primary" onclick="onb(1)">İleri</button></div>
+      <div class="onbrow" style="margin-top:24px"><button class="btn ghost" onclick="go('home')">Geç</button><button class="btn primary" onclick="onb(1)">İleri</button></div>
     </div>
     <div class="slide">
       <div class="arch" style="background:linear-gradient(160deg,#FAEEDC,#F3E9DF)">🥐</div>
@@ -194,9 +163,7 @@ textarea.fld{min-height:70px;resize:vertical}
       <div class="script">şeften not</div>
       <h2 class="disp" style="font-size:26px;font-weight:800;margin:4px 0 8px">Poğaça, simit, sıcak fırın</h2>
       <p style="font-size:13.5px;color:var(--text2)">Kahvaltılık fırın ürünlerimiz<br>gün boyu taze çıkar.</p>
-      <div class="onbrow" style="margin-top:24px">
-        <button class="btn ghost" onclick="onb(0)">Geri</button>
-        <button class="btn primary" onclick="onb(2)">İleri</button></div>
+      <div class="onbrow" style="margin-top:24px"><button class="btn ghost" onclick="onb(0)">Geri</button><button class="btn primary" onclick="onb(2)">İleri</button></div>
     </div>
     <div class="slide">
       <div class="arch" style="background:linear-gradient(160deg,#EDF3E4,#FBE3E8)">🎂</div>
@@ -204,26 +171,19 @@ textarea.fld{min-height:70px;resize:vertical}
       <div class="script">hayalini çiz, biz yapalım</div>
       <h2 class="disp" style="font-size:26px;font-weight:800;margin:4px 0 8px">Kişiye özel pastalar</h2>
       <p style="font-size:13.5px;color:var(--text2)">Doğum gününden düğüne,<br>tasarım sipariş tek dokunuş.</p>
-      <div class="onbrow" style="margin-top:24px">
-        <button class="btn ghost" onclick="onb(1)">Geri</button>
-        <button class="btn primary" onclick="go('home')">Başla</button></div>
+      <div class="onbrow" style="margin-top:24px"><button class="btn ghost" onclick="onb(1)">Geri</button><button class="btn primary" onclick="go('home')">Başla</button></div>
     </div>
   </section>
-
   <section class="screen" id="sc-home">
     <div class="hrow">
-      <span class="logoWrap" style="width:46px;height:46px">
-        <svg class="lsvg"><use href="#logoSVG"/></svg><img data-logo alt=""></span>
-      <div style="flex:1">
-        <div class="status" id="status"></div>
-        <div class="disp" style="font-size:21px;font-weight:800;line-height:1.15">Bugün Vitrinde Neler Var?</div>
-      </div>
+      <span class="logoWrap" style="width:46px;height:46px"><svg class="lsvg"><use href="#logoSVG"/></svg><img data-logo alt=""></span>
+      <div style="flex:1"><div class="status" id="status"></div>
+        <div class="disp" style="font-size:21px;font-weight:800;line-height:1.15">Bugün Vitrinde Neler Var?</div></div>
       <div class="bag" onclick="go('cart')"><span class="ms">shopping_bag</span><b id="badge">0</b></div>
     </div>
     <input class="search" placeholder="poğaça, pasta, baklava..." oninput="q=this.value;grid()">
     <div class="banner" onclick="setFlt(3)">
-      <div><div class="script">haftanın vitrini</div><h3>Meyveli & Çikolatalı Pasta</h3>
-        <p>6 kişilik · ₺800</p></div>
+      <div><div class="script">haftanın vitrini</div><h3>Meyveli & Çikolatalı Pasta</h3><p>6 kişilik · ₺800</p></div>
       <span style="font-size:56px">🍰</span>
     </div>
     <div class="script" style="font-size:19px;margin-bottom:6px">fırından yeni çıktı ♨</div>
@@ -238,27 +198,17 @@ textarea.fld{min-height:70px;resize:vertical}
       <a class="igt" style="background:#EDF3E4" target="_blank" href="https://www.instagram.com/akkapi.ciragansarayi/"><span>📸</span><b>sen de etiketle</b></a>
     </div>
   </section>
-
   <section class="screen" id="sc-cats">
     <h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:16px">Kategoriler</h2>
     <div id="cats"></div>
-    <div class="catrow" style="background:#EAF3EE" onclick="go('basket')">
-      <span style="font-size:32px">🥖</span>
-      <div><b class="disp" style="font-size:16px;color:#6FA287">Sabah Sepeti Aboneliği</b>
-      <div style="font-size:12px;color:var(--text2)">her sabah kapında taze ekmek</div></div>
+    <div class="catrow" style="background:#EAF3EE" onclick="go('basket')"><span style="font-size:32px">🥖</span>
+      <div><b class="disp" style="font-size:16px;color:#6FA287">Sabah Sepeti Aboneliği</b><div style="font-size:12px;color:var(--text2)">her sabah kapında taze ekmek</div></div>
       <span class="ms" style="margin-left:auto;color:#6FA287">chevron_right</span></div>
-    <div class="catrow" style="background:#FBE3E8" onclick="go('cake')">
-      <span style="font-size:32px">🎂</span>
-      <div><b class="disp" style="font-size:16px;color:#C42B4E">Özel Pasta Teklifi</b>
-      <div style="font-size:12px;color:var(--text2)">hayalini çiz, fiyat WhatsApp'ına gelsin</div></div>
+    <div class="catrow" style="background:#FBE3E8" onclick="go('cake')"><span style="font-size:32px">🎂</span>
+      <div><b class="disp" style="font-size:16px;color:#C42B4E">Özel Pasta Teklifi</b><div style="font-size:12px;color:var(--text2)">hayalini çiz, fiyat WhatsApp'ına gelsin</div></div>
       <span class="ms" style="margin-left:auto;color:#C42B4E">chevron_right</span></div>
   </section>
-
-  <section class="screen" id="sc-cart">
-    <h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:16px">Sepetim</h2>
-    <div id="cart-body"></div>
-  </section>
-
+  <section class="screen" id="sc-cart"><h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:16px">Sepetim</h2><div id="cart-body"></div></section>
   <section class="screen" id="sc-checkout">
     <h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:4px">Sipariş Bilgileri</h2>
     <p class="script" style="font-size:18px;margin-bottom:14px">siparişin doğruca WhatsApp hattımıza düşer ♨</p>
@@ -266,26 +216,21 @@ textarea.fld{min-height:70px;resize:vertical}
     <input class="fld" id="co-tel" placeholder="Telefon (05xx...)">
     <div style="display:flex;gap:8px;margin-bottom:10px">
       <button class="pill on" id="m-ev" onclick="setMode('ev')">🛵 Teslimat</button>
-      <button class="pill" id="m-gel" onclick="setMode('gel')">🏪 Gel-Al</button>
-    </div>
+      <button class="pill" id="m-gel" onclick="setMode('gel')">🏪 Gel-Al</button></div>
     <textarea class="fld" id="co-addr" placeholder="Adres tarifi (bina, kat, daire...)"></textarea>
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
-      <button class="pill" onclick="go('map')">📍 Konumumu İşaretle</button>
-      <span id="pin-state" style="font:600 11px var(--ui);color:var(--text2)">haritada pinini bırak</span>
-    </div>
+      <button class="pill" onclick="go('map')">📍 Konumunu İşaretle</button>
+      <span id="pin-state" style="font:600 11px var(--ui);color:var(--text2)">haritada pinini bırak</span></div>
     <div style="display:flex;gap:8px;margin-bottom:12px">
       <button class="pill on" id="p-nakit" onclick="setPay('nakit')">💵 Kapıda Nakit</button>
-      <button class="pill" id="p-kart" onclick="setPay('kart')">💳 Kapıda Kart</button>
-    </div>
+      <button class="pill" id="p-kart" onclick="setPay('kart')">💳 Kapıda Kart</button></div>
     <div style="display:flex;gap:8px;margin-bottom:12px">
       <input class="fld" id="co-code" style="margin:0" placeholder="Kupon kodu (ILKSIPARIS)">
-      <button class="pill" onclick="applyCode()">Uygula</button>
-    </div>
+      <button class="pill" onclick="applyCode()">Uygula</button></div>
     <div id="co-sum"></div>
     <button class="btn wa block" style="margin-top:10px" onclick="submitOrder()">WhatsApp ile Sipariş Ver</button>
     <button class="btn ghost block" onclick="go('cart')">Geri</button>
   </section>
-
   <section class="screen" id="sc-map">
     <h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:4px">Konumunu İşaretle 📍</h2>
     <p class="script" style="font-size:18px;margin-bottom:10px">haritaya dokun ya da pini sürükle — kurye pine gider</p>
@@ -295,23 +240,11 @@ textarea.fld{min-height:70px;resize:vertical}
     <input class="fld" id="map-note" placeholder="Adres tarifi: bina, kat, daire, bilinen yer...">
     <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
       <button class="pill" onclick="mapHere()">🎯 Konumumu kullan</button>
-      <button class="pill" onclick="mapDrop()">📍 Ortaya pin bırak</button>
-    </div>
+      <button class="pill" onclick="mapDrop()">📍 Ortaya pin bırak</button></div>
     <button class="btn primary block" onclick="mapSave()">✅ Bu Pini Kaydet</button>
     <button class="btn ghost block" onclick="go('checkout')">Geri</button>
   </section>
-
-  <section class="screen" id="sc-track">
-    <h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:16px">Siparişlerim</h2>
-    <div id="track-body"></div>
-  </section>
-
-  <section class="screen" id="sc-fav">
-    <h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:16px">Favorilerim</h2>
-    <div class="grid" id="fav-grid"></div>
-    <button class="btn ghost block" style="margin-top:14px" onclick="go('profile')">Geri</button>
-  </section>
-
+  <section class="screen" id="sc-track"><h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:16px">Siparişlerim</h2><div id="track-body"></div></section>
   <section class="screen" id="sc-addr">
     <h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:16px">Adreslerim</h2>
     <div id="addr-list"></div>
@@ -320,7 +253,6 @@ textarea.fld{min-height:70px;resize:vertical}
     <button class="btn primary block" onclick="saveAddr()">Adresi Kaydet</button>
     <button class="btn ghost block" onclick="go('profile')">Geri</button>
   </section>
-
   <section class="screen" id="sc-bday">
     <h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:4px">Doğum Günlerim</h2>
     <p class="script" style="font-size:18px;margin-bottom:14px">pasta bizden sorulur 🎂 gününü kaçırmayız</p>
@@ -330,34 +262,28 @@ textarea.fld{min-height:70px;resize:vertical}
     <button class="btn primary block" onclick="saveBday()">Kaydet</button>
     <button class="btn ghost block" onclick="go('profile')">Geri</button>
   </section>
-
   <section class="screen" id="sc-stores">
     <h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:4px">Mağazalar & Konum</h2>
     <p class="script" style="font-size:18px;margin-bottom:14px">iki şube, tek vitrin ♨</p>
     <div id="stores-body"></div>
     <button class="btn ghost block" onclick="go('profile')">Geri</button>
   </section>
-
   <section class="screen" id="sc-set">
     <h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:16px">Ayarlar</h2>
     <div style="font:700 12px var(--ui);color:var(--text2);margin-bottom:6px">ŞUBE</div>
     <div style="display:flex;gap:8px;margin-bottom:16px">
       <button class="pill" id="br-y" onclick="setBranch('y')">Yeşiloba TOKİ</button>
-      <button class="pill" id="br-k" onclick="setBranch('k')">Akkapı</button>
-    </div>
+      <button class="pill" id="br-k" onclick="setBranch('k')">Akkapı</button></div>
     <div style="font:700 12px var(--ui);color:var(--text2);margin-bottom:6px">BİLDİRİMLER</div>
-    <div class="mrow" onclick="tgl('notif')"><span class="ms">notifications</span>Sipariş & kampanya bildirimleri
-      <span class="swt" id="sw-notif"><i></i></span></div>
-    <div class="mrow" style="margin-bottom:16px" onclick="tgl('hh')"><span class="ms">nightlight</span>Mutlu saat hatırlatması (20:00)
-      <span class="swt" id="sw-hh"><i></i></span></div>
+    <div class="mrow" onclick="tgl('notif')"><span class="ms">notifications</span>Sipariş & kampanya bildirimleri<span class="swt" id="sw-notif"><i></i></span></div>
+    <div class="mrow" style="margin-bottom:16px" onclick="tgl('hh')"><span class="ms">nightlight</span>Mutlu saat hatırlatması (20:00)<span class="swt" id="sw-hh"><i></i></span></div>
     <div style="font:700 12px var(--ui);color:var(--text2);margin-bottom:6px">VERİLER</div>
     <div class="mrow" onclick="wipeCart()"><span class="ms">delete_sweep</span>Sepeti temizle<span class="ms chev">chevron_right</span></div>
     <div class="mrow" onclick="wipeFav()"><span class="ms">heart_broken</span>Favorileri temizle<span class="ms chev">chevron_right</span></div>
     <div class="mrow" style="color:var(--primary)" onclick="resetApp()"><span class="ms" style="color:var(--primary)">restart_alt</span>Uygulamayı sıfırla<span class="ms chev">chevron_right</span></div>
-    <p style="font-size:11px;color:var(--text2);margin-top:16px;text-align:center">Çırağan Sarayı v13 · Adana · @akkapi.ciragansarayi</p>
+    <p style="font-size:11px;color:var(--text2);margin-top:16px;text-align:center">Çırağan Sarayı v14 · Adana · @akkapi.ciragansarayi</p>
     <button class="btn ghost block" onclick="go('profile')">Geri</button>
   </section>
-
   <section class="screen" id="sc-cake">
     <h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:4px">Özel Pasta Teklifi</h2>
     <p class="script" style="font-size:18px;margin-bottom:14px">şeften not: hayalini anlat, gerisi bizde 🎂</p>
@@ -366,20 +292,17 @@ textarea.fld{min-height:70px;resize:vertical}
     <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
       <button class="pill on" data-k="kisi" data-v="4-6" onclick="pick(this)">4-6 kişilik</button>
       <button class="pill" data-k="kisi" data-v="8-10" onclick="pick(this)">8-10 kişilik</button>
-      <button class="pill" data-k="kisi" data-v="10+" onclick="pick(this)">10+ kişilik</button>
-    </div>
+      <button class="pill" data-k="kisi" data-v="10+" onclick="pick(this)">10+ kişilik</button></div>
     <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
       <button class="pill on" data-k="lez" data-v="Meyveli" onclick="pick(this)">Meyveli</button>
       <button class="pill" data-k="lez" data-v="Çikolatalı" onclick="pick(this)">Çikolatalı</button>
-      <button class="pill" data-k="lez" data-v="Fıstıklı" onclick="pick(this)">Fıstıklı</button>
-    </div>
+      <button class="pill" data-k="lez" data-v="Fıstıklı" onclick="pick(this)">Fıstıklı</button></div>
     <input class="fld" id="ck-yazi" placeholder="Pastanın üzerine yazılacak yazı">
     <input class="fld" id="ck-tarih" placeholder="Teslim tarihi (gg.aa.yyyy)">
     <textarea class="fld" id="ck-not" placeholder="Renk, tema, alerji notu..."></textarea>
     <button class="btn wa block" onclick="sendCake()">Teklifi WhatsApp'tan İste</button>
     <button class="btn ghost block" onclick="go('profile')">Geri</button>
   </section>
-
   <section class="screen" id="sc-basket">
     <h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:4px">Sabah Sepeti</h2>
     <p class="script" style="font-size:18px;margin-bottom:14px">her sabah taze ekmek, kapında ♨</p>
@@ -388,34 +311,27 @@ textarea.fld{min-height:70px;resize:vertical}
       <button class="pill" data-e="Yulaflı" onclick="pickE(this)">Yulaflı</button>
       <button class="pill" data-e="Susamlı" onclick="pickE(this)">Susamlı</button>
       <button class="pill" data-e="Kepekli" onclick="pickE(this)">Kepekli</button>
-      <button class="pill" data-e="Çavdarlı" onclick="pickE(this)">Çavdarlı</button>
-    </div>
+      <button class="pill" data-e="Çavdarlı" onclick="pickE(this)">Çavdarlı</button></div>
     <input class="fld" id="bs-adet" type="number" min="1" value="2" placeholder="Günlük adet">
     <div style="display:flex;gap:8px;margin-bottom:10px">
       <button class="pill on" data-k="saat" data-v="07:00-09:00" onclick="pick(this)">07:00-09:00</button>
-      <button class="pill" data-k="saat" data-v="16:00-18:00" onclick="pick(this)">16:00-18:00</button>
-    </div>
+      <button class="pill" data-k="saat" data-v="16:00-18:00" onclick="pick(this)">16:00-18:00</button></div>
     <input class="fld" id="bs-name" placeholder="Ad Soyad">
     <input class="fld" id="bs-tel" placeholder="Telefon">
     <textarea class="fld" id="bs-addr" placeholder="Teslimat adresi"></textarea>
     <button class="btn wa block" onclick="sendBasket()">Abonelik Başvurusu Gönder</button>
     <button class="btn ghost block" onclick="go('profile')">Geri</button>
   </section>
-
   <section class="screen" id="sc-profile">
     <div style="display:flex;align-items:center;gap:14px;margin:8px 0 14px">
-      <span class="logoWrap" style="width:60px;height:60px">
-        <svg class="lsvg"><use href="#logoSVG"/></svg><img data-logo alt=""></span>
-      <div><div class="disp" style="font-size:19px;font-weight:700">Misafir</div>
-        <div class="script" style="font-size:16px">gold vitrin üyesi</div></div>
-    </div>
+      <span class="logoWrap" style="width:60px;height:60px"><svg class="lsvg"><use href="#logoSVG"/></svg><img data-logo alt=""></span>
+      <div><div class="disp" style="font-size:19px;font-weight:700">Misafir</div><div class="script" style="font-size:16px">gold vitrin üyesi</div></div></div>
     <div style="background:var(--caramel-soft);border:1px solid var(--border);border-radius:var(--r-card);padding:14px;margin-bottom:14px">
       <div style="font:700 13px var(--ui)">🥐 Sadakat Kartı — <span id="st-count"></span></div>
       <div class="stamps" id="stamps"></div>
-      <div style="font-size:11.5px;color:var(--text2)">10 kaşede 1 simit bizden. Her sipariş 1 kaşe.</div>
-    </div>
+      <div style="font-size:11.5px;color:var(--text2)">10 kaşede 1 simit bizden. Her sipariş 1 kaşe.</div></div>
     <div class="mrow" onclick="go('track')"><span class="ms">receipt_long</span>Siparişlerim<small id="pr-ord">0</small></div>
-    <div class="mrow" onclick="go('fav')"><span class="ms">favorite</span>Favorilerim<small id="pr-fav">0</small></div>
+    <div class="mrow" onclick="setFlt(-1)"><span class="ms">favorite</span>Favorilerim<small id="pr-fav">0</small></div>
     <div class="mrow" onclick="go('addr')"><span class="ms">location_on</span>Adreslerim<small id="pr-adr">0</small></div>
     <div class="mrow" onclick="go('bday')"><span class="ms">cake</span>Doğum günlerim<small id="pr-bd">0</small></div>
     <div class="mrow" onclick="go('stores')"><span class="ms">map</span>Mağazalar & Konum<span class="ms chev">chevron_right</span></div>
@@ -425,11 +341,9 @@ textarea.fld{min-height:70px;resize:vertical}
     <div class="mrow" onclick="go('set')"><span class="ms">settings</span>Ayarlar<span class="ms chev">chevron_right</span></div>
     <div class="mrow" style="border:0;color:var(--primary)" onclick="logout()"><span class="ms" style="color:var(--primary)">logout</span>Çıkış Yap</div>
   </section>
-
   <section class="screen" id="sc-detail">
     <div class="darch" id="d-tile"><button class="back" onclick="go('home')"><span class="ms">arrow_back</span></button>
-      <img id="d-img" src="" style="display:none"
-        onerror="if(this.dataset.ph){this.src=this.dataset.ph;this.dataset.ph='';}else{this.style.display='none'}">
+      <img id="d-img" src="" style="display:none" onerror="if(this.dataset.ph){this.src=this.dataset.ph;this.dataset.ph='';}else{this.style.display='none'}">
       <span id="d-emoji">🍰</span><span class="badge" id="d-badge" style="top:16px;left:16px">şefin seçimi</span></div>
     <span class="chip" id="d-chip" style="cursor:default"></span>
     <h2 class="disp" id="d-name" style="font-size:24px;font-weight:800;margin:10px 0 4px"></h2>
@@ -437,18 +351,15 @@ textarea.fld{min-height:70px;resize:vertical}
     <p class="script" id="d-note" style="margin:10px 0 18px;font-size:19px"></p>
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
       <span class="price" id="d-price" style="font-size:22px"></span>
-      <div class="stepper"><button onclick="dq(-1)">−</button><b id="d-qty">1</b><button onclick="dq(1)">+</button></div>
-    </div>
+      <div class="stepper"><button onclick="dq(-1)">−</button><b id="d-qty">1</b><button onclick="dq(1)">+</button></div></div>
     <button class="btn primary block" id="d-cta" onclick="addCur()"></button>
   </section>
-<div id="install-bar" style="display:none;position:absolute;left:12px;right:12px;bottom:78px;z-index:30;
-  background:var(--vitrin);border:1px solid rgba(217,164,65,.35);border-radius:var(--r-card);
-  padding:12px 14px;align-items:center;gap:10px;color:#fff">
-  <span class="logoWrap" style="width:38px;height:38px"><svg class="lsvg"><use href="#logoSVG"/></svg></span>
-  <div style="flex:1;font:600 12px var(--ui)">Telefona kur — <b style="color:var(--gold)">app gibi</b> açılır, logon cebinde kalır</div>
-  <button class="btn mini primary" onclick="installApp()">Kur</button>
-  <button class="btn mini ghost" style="color:#fff" onclick="hideInstall()">✕</button>
-</div>
+  <div id="install-bar" style="display:none;position:absolute;left:12px;right:12px;bottom:78px;z-index:30;background:var(--vitrin);border:1px solid rgba(217,164,65,.35);border-radius:var(--r-card);padding:12px 14px;align-items:center;gap:10px;color:#fff">
+    <span class="logoWrap" style="width:38px;height:38px"><svg class="lsvg"><use href="#logoSVG"/></svg></span>
+    <div style="flex:1;font:600 12px var(--ui)">Telefona kur — <b style="color:var(--gold)">app gibi</b> açılır, logon cebinde kalır</div>
+    <button class="btn mini primary" onclick="installApp()">Kur</button>
+    <button class="btn mini ghost" style="color:#fff" onclick="hideInstall()">✕</button>
+  </div>
   <nav class="tabbar">
     <button class="tab on" data-s="home" onclick="go('home')"><span class="ms">home</span>Vitrin</button>
     <button class="tab" data-s="cats" onclick="go('cats')"><span class="ms">bakery_dining</span>Menü</button>
@@ -456,7 +367,6 @@ textarea.fld{min-height:70px;resize:vertical}
     <button class="tab" data-s="profile" onclick="go('profile')"><span class="ms">person</span>Profil</button>
   </nav>
 </div></div>
-
 <script src="menu.js"></script>
 <script>
 let cart=JSON.parse(localStorage.cs_cart||'{}');
@@ -474,17 +384,13 @@ const sc=()=>localStorage.cs_cart=JSON.stringify(cart);
 const localOf=p=>'urunler/'+p.id+'.jpg';
 const CHAIN='if(this.dataset.ph){this.src=this.dataset.ph;this.dataset.ph=\'\';}else{this.remove()}';
 const HH=()=>new Date().getHours()>=20;
-
 function loadLogos(){ const cand=['logo.png','logo.webp','logo.jpg','logo.jpeg','logo.PNG'];
   document.querySelectorAll('img[data-logo]:not([src])').forEach(img=>{ let i=0;
     const next=()=>{ if(i>=cand.length){ img.remove(); return; } img.src=cand[i++]; };
     img.onerror=next; next(); }); }
-
-(function(){ const m=new Date().getHours()*60+new Date().getMinutes();
-  const open=m>=525&&m<1440;
+(function(){ const m=new Date().getHours()*60+new Date().getMinutes(); const open=m>=525&&m<1440;
   $('#status').style.color=open?'var(--pistachio)':'var(--primary)';
   $('#status').innerHTML='<i></i>'+(open?'Açık · 24:00\'e kadar':'Kapalı · 08:45\'te')+' · '+BR[branch].n; })();
-
 function go(id){
   document.querySelectorAll('.screen').forEach(x=>x.classList.remove('on'));
   $('#sc-'+id).classList.add('on');
@@ -492,11 +398,9 @@ function go(id){
   $('#phone').classList.toggle('notab', !['home','cats','cart','profile'].includes(id));
   if(id==='cart') cartUI();
   if(id==='checkout'){ if(!$('#co-addr').value&&addr[adDef]) $('#co-addr').value=addr[adDef].t+': '+addr[adDef].a;
-    if(userLoc){ $('#pin-state').textContent='📍 pin kayıtlı — siparişe eklenecek'; $('#pin-state').style.color='var(--pistachio)'; }
-    coSum(); }
+    if(userLoc){ $('#pin-state').textContent='📍 pin kayıtlı — siparişe eklenecek'; $('#pin-state').style.color='var(--pistachio)'; } coSum(); }
   if(id==='track') trackUI();
   if(id==='profile') profUI();
-  if(id==='fav') favUI();
   if(id==='addr') addrUI();
   if(id==='bday') bdUI();
   if(id==='set') setUI();
@@ -511,44 +415,27 @@ function chips(){
    `<button class="chip" onclick="setFlt(-1)" style="${flt===-1?'background:var(--primary-soft);border-color:#C42B4E70;color:var(--primary)':''}">♥ Favoriler</button>`+
    CATS.map((f,i)=>`<button class="chip" onclick="setFlt(${i+1})" style="${flt===i+1?`background:${f.s};border-color:${f.m}70;color:${f.m}`:''}">${f.l}</button>`).join('');
 }
-function cardHTML(p){ return `
-   <div class="pcard" onclick="detail(${p.id})">
-     <div class="tile" style="background:${CATS[p.f].s}">${p.e}
-       <img src="${localOf(p)}" data-ph="${p.img||''}" onerror="${CHAIN}">
-       ${p.chef?'<span class="badge">şefin seçimi</span>':''}
-       <button class="favb" onclick="event.stopPropagation();tfav(${p.id})"><span class="ms"
-         style="${fav.has(p.id)?'font-variation-settings:\'FILL\' 1;color:var(--primary)':'color:var(--text2)'}">favorite</span></button></div>
-     <div class="pinfo"><div class="pname">${p.n}</div><div class="pdesc">${p.d}</div>
-       <div class="prow"><span class="price">₺${p.p}</span>
-       <button class="add" onclick="event.stopPropagation();add(${p.id})"><span class="ms" style="font-size:18px">add</span></button>
-     </div></div></div>`; }
+function cardHTML(p){ return `<div class="pcard" onclick="detail(${p.id})">
+   <div class="tile" style="background:${CATS[p.f].s}">${p.e}
+     <img src="${localOf(p)}" data-ph="${p.img||''}" onerror="${CHAIN}">
+     ${p.chef?'<span class="badge">şefin seçimi</span>':''}
+     <button class="favb" onclick="event.stopPropagation();tfav(${p.id})"><span class="ms" style="${fav.has(p.id)?'font-variation-settings:\'FILL\' 1;color:var(--primary)':'color:var(--text2)'}">favorite</span></button></div>
+   <div class="pinfo"><div class="pname">${p.n}</div><div class="pdesc">${p.d}</div>
+     <div class="prow"><span class="price">₺${p.p}</span>
+     <button class="add" onclick="event.stopPropagation();add(${p.id})"><span class="ms" style="font-size:18px">add</span></button>
+   </div></div></div>`; }
 function todayRow(){
   $('#today').innerHTML=TODAY.map(id=>{ const p=P.find(x=>x.id===id); if(!p) return '';
-   return `<div class="mini" onclick="detail(${p.id})">
-     <div class="tile" style="background:${CATS[p.f].s}">${p.e}<img src="${localOf(p)}" data-ph="${p.img||''}" onerror="${CHAIN}"></div>
-     <div class="pinfo"><div class="pname">${p.n}</div><div class="price" style="font-size:13px">₺${p.p}</div></div></div>`; }).join('');
+   return `<div class="mini" onclick="detail(${p.id})"><div class="tile" style="background:${CATS[p.f].s}">${p.e}<img src="${localOf(p)}" data-ph="${p.img||''}" onerror="${CHAIN}"></div><div class="pinfo"><div class="pname">${p.n}</div><div class="price" style="font-size:13px">₺${p.p}</div></div></div>`; }).join('');
 }
 function grid(){
-  const list=P.filter(p=>(flt===0||(flt===-1&&fav.has(p.id))||(flt>0&&p.f===flt-1))
-    &&p.n.toLowerCase().includes(q.toLowerCase()));
-  $('#grid').innerHTML=list.map(cardHTML).join('') ||
-   `<p class="script" style="grid-column:1/-1;text-align:center;font-size:22px">bu raf yakında doluyor 🥐</p>`;
+  const list=P.filter(p=>(flt===0||(flt===-1&&fav.has(p.id))||(flt>0&&p.f===flt-1))&&p.n.toLowerCase().includes(q.toLowerCase()));
+  $('#grid').innerHTML=list.map(cardHTML).join('') || `<p class="script" style="grid-column:1/-1;text-align:center;font-size:22px">bu raf yakında doluyor 🥐</p>`;
 }
-function favUI(){
-  const list=P.filter(p=>fav.has(p.id));
-  $('#fav-grid').innerHTML=list.map(cardHTML).join('') ||
-   `<p class="script" style="grid-column:1/-1;text-align:center;font-size:22px">henüz favori yok 🤍<br>vitrinde kalbe dokun</p>`;
-}
-function tfav(id){ fav.has(id)?fav.delete(id):fav.add(id);
-  localStorage.cs_fav=JSON.stringify([...fav]); grid(); favUI(); }
+function tfav(id){ fav.has(id)?fav.delete(id):fav.add(id); localStorage.cs_fav=JSON.stringify([...fav]); grid(); profUI(); }
 function cats(){
-  $('#cats').innerHTML=CATS.map((f,i)=>{
-    const c=P.filter(p=>p.f===i).length;
-    return `<div class="catrow" style="background:${f.s}" onclick="setFlt(${i+1})">
-      <span style="font-size:32px">${f.e}</span>
-      <div><b class="disp" style="font-size:16px;color:${f.m}">${f.l}</b>
-      <div style="font-size:12px;color:var(--text2)">${c?c+' ürün':'yakında'}</div></div>
-      <span class="ms" style="margin-left:auto;color:${f.m}">chevron_right</span></div>`;}).join('');
+  $('#cats').innerHTML=CATS.map((f,i)=>{ const c=P.filter(p=>p.f===i).length;
+   return `<div class="catrow" style="background:${f.s}" onclick="setFlt(${i+1})"><span style="font-size:32px">${f.e}</span><div><b class="disp" style="font-size:16px;color:${f.m}">${f.l}</b><div style="font-size:12px;color:var(--text2)">${c?c+' ürün':'yakında'}</div></div><span class="ms" style="margin-left:auto;color:${f.m}">chevron_right</span></div>`; }).join('');
 }
 function detail(id){
   cur=id; qty=1; const p=P.find(x=>x.id===id), f=CATS[p.f];
@@ -559,55 +446,43 @@ function detail(id){
   $('#d-name').textContent=p.n; $('#d-desc').textContent=p.d;
   $('#d-note').textContent='şeften not: '+(p.note||'hepsi günlük üretim');
   $('#d-price').textContent='₺'+p.p; $('#d-qty').textContent=1;
-  $('#d-cta').textContent=`Sepete Ekle · ₺${p.p}`;
-  go('detail');
+  $('#d-cta').textContent=`Sepete Ekle · ₺${p.p}`; go('detail');
 }
-function dq(d){ qty=Math.max(1,qty+d); $('#d-qty').textContent=qty;
-  $('#d-cta').textContent=`Sepete Ekle · ₺${P.find(x=>x.id===cur).p*qty}`; }
+function dq(d){ qty=Math.max(1,qty+d); $('#d-qty').textContent=qty; $('#d-cta').textContent=`Sepete Ekle · ₺${P.find(x=>x.id===cur).p*qty}`; }
 function addCur(){ add(cur,qty); go('home'); }
 function add(id,d=1){ cart[id]=(cart[id]||0)+d; if(cart[id]<=0) delete cart[id]; sc(); badge(); }
 function badge(){ $('#badge').textContent=Object.values(cart).reduce((a,b)=>a+b,0); }
-function totals(){
-  let sub=0,happy=0;
-  Object.entries(cart).forEach(([id,c])=>{ const p=P.find(x=>x.id==id);
-    sub+=p.p*c; if(HH()&&p.f===2) happy+=p.p*c*0.2; });
+function totals(){ let sub=0,happy=0;
+  Object.entries(cart).forEach(([id,c])=>{ const p=P.find(x=>x.id==id); sub+=p.p*c; if(HH()&&p.f===2) happy+=p.p*c*0.2; });
   const coup=CODES[coupon]?Math.round((sub-happy)*CODES[coupon]/100):0;
-  return {sub,happy,coup,grand:sub-happy-coup+POSET};
-}
+  return {sub,happy,coup,grand:sub-happy-coup+POSET}; }
 function cartUI(){
   const ids=Object.keys(cart);
   if(!ids.length){ $('#cart-body').innerHTML=`<div style="text-align:center;padding:50px 0">
-    <span class="logoWrap" style="width:96px;height:96px;margin:0 auto 10px">
-      <svg class="lsvg"><use href="#logoSVG"/></svg><img data-logo alt=""></span>
+    <span class="logoWrap" style="width:96px;height:96px;margin:0 auto 10px"><svg class="lsvg"><use href="#logoSVG"/></svg><img data-logo alt=""></span>
     <div class="script" style="font-size:23px;margin:0 0 18px">sepet henüz boş, vitrin taze...</div>
     <button class="btn primary" onclick="go('home')">Vitrine Git</button>
     ${orders.length?'<button class="btn ghost block" style="margin-top:8px" onclick="reorder()">🔁 Son siparişimin aynısı</button>':''}</div>`;
     loadLogos(); return; }
   const t=totals();
   const rows=ids.map(id=>{ const p=P.find(x=>x.id==id), f=CATS[p.f], c=cart[id];
-    return `<div class="crow"><div class="ctile" style="background:${f.s}">${p.e}
-      <img src="${localOf(p)}" data-ph="${p.img||''}" onerror="${CHAIN}"></div>
-      <div style="flex:1"><div class="pname">${p.n}</div><div class="price" style="font-size:13px">₺${p.p*c}</div></div>
-      <div class="stepper"><button onclick="add(${id},-1);cartUI()">−</button><b>${c}</b><button onclick="add(${id});cartUI()">+</button></div>
-    </div>`; }).join('');
+   return `<div class="crow"><div class="ctile" style="background:${f.s}">${p.e}<img src="${localOf(p)}" data-ph="${p.img||''}" onerror="${CHAIN}"></div>
+    <div style="flex:1"><div class="pname">${p.n}</div><div class="price" style="font-size:13px">₺${p.p*c}</div></div>
+    <div class="stepper"><button onclick="add(${id},-1);cartUI()">−</button><b>${c}</b><button onclick="add(${id});cartUI()">+</button></div></div>`; }).join('');
   $('#cart-body').innerHTML=rows+`
     ${t.happy?`<div class="trow"><span>🌙 Mutlu saat (pastalar %20)</span><span>-₺${t.happy}</span></div>`:''}
     <div class="trow"><span>Ara toplam</span><span>₺${t.sub-t.happy}</span></div>
     <div class="trow"><span>Poşet (Çevre Kanunu)</span><span>₺${POSET}</span></div>
-    <div style="display:flex;justify-content:space-between;padding:10px 4px 14px;font:700 15px var(--ui)">
-      <span>Toplam</span><span class="price" style="font-size:18px">₺${t.grand}</span></div>
+    <div style="display:flex;justify-content:space-between;padding:10px 4px 14px;font:700 15px var(--ui)"><span>Toplam</span><span class="price" style="font-size:18px">₺${t.grand}</span></div>
     <button class="btn primary block" onclick="go('checkout')">Siparişe Geç</button>`;
 }
-function reorder(){ const o=orders[orders.length-1]; cart={};
-  o.items.forEach(it=>cart[it.id]=it.c); sc(); badge(); cartUI(); }
+function reorder(){ const o=orders[orders.length-1]; cart={}; o.items.forEach(it=>cart[it.id]=it.c); sc(); badge(); cartUI(); }
 function setMode(m){ mode=m; $('#m-ev').classList.toggle('on',m==='ev'); $('#m-gel').classList.toggle('on',m==='gel'); }
 function setPay(p){ pay=p; $('#p-nakit').classList.toggle('on',p==='nakit'); $('#p-kart').classList.toggle('on',p==='kart'); }
 function applyCode(){ const c=$('#co-code').value.trim().toUpperCase();
-  if(CODES[c]){ coupon=c; alert('Kupon uygulandı: %'+CODES[c]+' indirim 🎉'); } else { coupon=''; alert('Bu kod geçerli değil 🥺'); }
-  coSum(); }
+  if(CODES[c]){ coupon=c; alert('Kupon uygulandı: %'+CODES[c]+' indirim 🎉'); } else { coupon=''; alert('Bu kod geçerli değil 🥺'); } coSum(); }
 function coSum(){ const t=totals();
-  $('#co-sum').innerHTML=`
-    <div class="trow"><span>Ara toplam</span><span>₺${t.sub}</span></div>
+  $('#co-sum').innerHTML=`<div class="trow"><span>Ara toplam</span><span>₺${t.sub}</span></div>
     ${t.happy?`<div class="trow"><span>🌙 Mutlu saat</span><span>-₺${t.happy}</span></div>`:''}
     ${t.coup?`<div class="trow"><span>🎟 Kupon (${coupon})</span><span>-₺${t.coup}</span></div>`:''}
     <div class="trow"><span>Poşet</span><span>₺${POSET}</span></div>
@@ -629,22 +504,18 @@ function submitOrder(){
   localStorage.cs_orders=JSON.stringify(orders);
   stamps++; localStorage.cs_stamps=stamps;
   cart={}; sc(); badge(); coupon='';
-  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(txt));
-  go('track');
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(txt)); go('track');
 }
 function trackUI(){
-  if(!orders.length){ $('#track-body').innerHTML=
-    `<p class="script" style="text-align:center;font-size:22px;padding:50px 0">henüz siparişin yok 🥐<br>vitrin taze...</p>`; return; }
+  if(!orders.length){ $('#track-body').innerHTML=`<p class="script" style="text-align:center;font-size:22px;padding:50px 0">henüz siparişin yok 🥐<br>vitrin taze...</p>`; return; }
   $('#track-body').innerHTML=orders.slice().reverse().map(o=>{
     const el=(Date.now()-o.t)/60000;
     const st=['Sipariş alındı','Mutfak hazırlıyor','Fırından çıktı / yolda','Teslim edildi 🎉'];
     const on=el>=20?4:el>=8?3:el>=2?2:1;
     const eta=new Date(o.t+20*60000).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
-    const rel=Math.max(0,Math.round(el))+' dk önce';
     return `<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:14px;margin-bottom:12px">
-      <div style="display:flex;justify-content:space-between;font:700 14px var(--ui)">
-        <span>${o.code}</span><span class="price">₺${o.total}</span></div>
-      <div style="font-size:11px;color:var(--text2);margin-bottom:8px">${rel} · tahmini teslim ${eta}</div>
+      <div style="display:flex;justify-content:space-between;font:700 14px var(--ui)"><span>${o.code}</span><span class="price">₺${o.total}</span></div>
+      <div style="font-size:11px;color:var(--text2);margin-bottom:8px">${Math.max(0,Math.round(el))} dk önce · tahmini teslim ${eta}</div>
       <div class="tl">${st.map((s,i)=>`<div class="${i<on?'on':''}"><i></i>${s}</div>`).join('')}</div>
       <div style="display:flex;gap:8px;margin-top:8px">
         <button class="btn mini ghost" onclick="reorderOf('${o.code}')">🔁 Tekrarla</button>
@@ -654,17 +525,13 @@ function trackUI(){
 function cancelOrder(code){ if(!confirm(code+' iptal edilsin mi?')) return;
   const i=orders.findIndex(o=>o.code===code); if(i<0) return;
   orders.splice(i,1); localStorage.cs_orders=JSON.stringify(orders);
-  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent('*SİPARİŞ İPTALİ* '+code));
-  trackUI(); }
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent('*SİPARİŞ İPTALİ* '+code)); trackUI(); }
 function reorderOf(code){ const o=orders.find(x=>x.code===code); if(!o) return;
   cart={}; o.items.forEach(it=>cart[it.id]=it.c); sc(); badge(); go('cart'); }
 setInterval(()=>{ if($('#sc-track').classList.contains('on')) trackUI(); },20000);
-/* ---- ADRESLER ---- */
 function addrUI(){
-  $('#addr-list').innerHTML=addr.map((a,i)=>`
-   <div class="lrow"><div class="ic"><span class="ms" style="font-size:18px">location_on</span></div>
-    <div style="flex:1"><div style="font:700 13.5px var(--ui)">${a.t} ${i===adDef?'⭐':''}</div>
-    <div style="font-size:11.5px;color:var(--text2)">${a.a}</div></div>
+  $('#addr-list').innerHTML=addr.map((a,i)=>`<div class="lrow"><div class="ic"><span class="ms" style="font-size:18px">location_on</span></div>
+    <div style="flex:1"><div style="font:700 13.5px var(--ui)">${a.t} ${i===adDef?'⭐':''}</div><div style="font-size:11.5px;color:var(--text2)">${a.a}</div></div>
     <button class="btn mini ghost" onclick="defAddr(${i})">Varsay</button>
     <button class="btn mini ghost" style="color:var(--primary)" onclick="delAddr(${i})">Sil</button></div>`).join('')
    || `<p class="script" style="text-align:center;font-size:20px;margin-bottom:12px">kayıtlı adres yok 📍</p>`;
@@ -677,15 +544,13 @@ function saveAddr(){ const t=$('#ad-title').value.trim(), a=$('#ad-text').value.
 function delAddr(i){ addr.splice(i,1); if(adDef>=addr.length) adDef=0;
   localStorage.cs_addr=JSON.stringify(addr); localStorage.cs_addef=adDef; addrUI(); }
 function defAddr(i){ adDef=i; localStorage.cs_addef=i; addrUI(); }
-/* ---- DOĞUM GÜNLERİ ---- */
 function daysLeft(ds){ const t=new Date(); t.setHours(0,0,0,0); const d=new Date(ds);
   d.setFullYear(t.getFullYear()+((d.getMonth()<t.getMonth()||(d.getMonth()===t.getMonth()&&d.getDate()<t.getDate()))?1:0));
   return Math.round((d-t)/86400000); }
 function bdUI(){
   $('#bd-list').innerHTML=bday.map((b,i)=>{ const g=daysLeft(b.d);
    return `<div class="lrow"><div class="ic" style="background:var(--primary-soft)"><span class="ms" style="font-size:18px">cake</span></div>
-    <div style="flex:1"><div style="font:700 13.5px var(--ui)">${b.n}</div>
-    <div style="font-size:11.5px;color:var(--text2)">${new Date(b.d).toLocaleDateString('tr-TR')}</div></div>
+    <div style="flex:1"><div style="font:700 13.5px var(--ui)">${b.n}</div><div style="font-size:11.5px;color:var(--text2)">${new Date(b.d).toLocaleDateString('tr-TR')}</div></div>
     <b style="font:800 12px var(--ui);color:${g===0?'var(--primary)':'var(--caramel)'}">${g===0?'bugün 🎉':g+' gün'}</b>
     <button class="btn mini ghost" style="color:var(--primary)" onclick="delBday(${i})">Sil</button></div>`; }).join('')
    || `<p class="script" style="text-align:center;font-size:20px;margin-bottom:12px">pasta bahanesi bekliyoruz 🎂</p>`;
@@ -695,69 +560,50 @@ function saveBday(){ const n=$('#bd-name').value.trim(), d=$('#bd-date').value;
   bday.push({n,d}); localStorage.cs_bday=JSON.stringify(bday);
   $('#bd-name').value=''; $('#bd-date').value=''; bdUI(); }
 function delBday(i){ bday.splice(i,1); localStorage.cs_bday=JSON.stringify(bday); bdUI(); }
-/* ---- HARİTA & PIN (Leaflet + Esri karo: anahtarsız, filigransız) ---- */
 let map=null,pinMk=null,meMk=null,accC=null;
 const LL=x=>Array.isArray(x)?x:[x.lat,x.lng];
 function openMap(){
   if(!window.L){ alert('Harita kütüphanesi yüklenemedi 🥺'); return go('checkout'); }
   setTimeout(()=>{
-    if(!map){
-      map=L.map('map');
-      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
-        {maxZoom:19,attribution:'© Esri, OpenStreetMap katkıcıları'}).addTo(map);
+    if(!map){ map=L.map('map');
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'© Esri, OpenStreetMap katkıcıları'}).addTo(map);
       map.on('click',e=>setPin(e.latlng));
       map.setView(userLoc?[userLoc.lat,userLoc.lng]:[37.0000,35.3210], userLoc?17:13);
-      if(userLoc) setPin([userLoc.lat,userLoc.lng]);
-    }
+      if(userLoc) setPin([userLoc.lat,userLoc.lng]); }
     map.invalidateSize();
     if(userLoc&&userLoc.addr&&!$('#map-note').value) $('#map-note').value=userLoc.addr;
     if(navigator.geolocation) navigator.geolocation.getCurrentPosition(p=>{
       const ll=[p.coords.latitude,p.coords.longitude];
-      if(!meMk) meMk=L.circleMarker(ll,{radius:7,color:'#fff',weight:2,fillColor:'#C42B4E',fillOpacity:1}).addTo(map);
-      else meMk.setLatLng(ll);
+      if(!meMk) meMk=L.circleMarker(ll,{radius:7,color:'#fff',weight:2,fillColor:'#C42B4E',fillOpacity:1}).addTo(map); else meMk.setLatLng(ll);
       if(!userLoc){ map.setView(ll,17); setPin(ll); }
       setUser({lat:ll[0],lng:ll[1]},p.coords.accuracy);
     },()=>{},{enableHighAccuracy:true,timeout:8000});
   },150);
 }
-function setPin(ll){
-  const la=LL(ll);
-  if(!pinMk) pinMk=L.marker(la,{draggable:true}).addTo(map)
-    .on('dragend',e=>setUser({lat:e.target.getLatLng().lat,lng:e.target.getLatLng().lng},null));
+function setPin(ll){ const la=LL(ll);
+  if(!pinMk) pinMk=L.marker(la,{draggable:true}).addTo(map).on('dragend',e=>setUser({lat:e.target.getLatLng().lat,lng:e.target.getLatLng().lng},null));
   else pinMk.setLatLng(la);
-  setUser({lat:la[0],lng:la[1]},null);
-}
+  setUser({lat:la[0],lng:la[1]},null); }
 function setUser(o,acc){
   userLoc={...(userLoc||{}),lat:Math.round(o.lat*1e5)/1e5,lng:Math.round(o.lng*1e5)/1e5};
   if(acc){ userLoc.acc=Math.round(acc);
-    if(!accC) accC=L.circle([o.lat,o.lng],{radius:acc,color:'#C42B4E',weight:1,fillOpacity:.08}).addTo(map);
-    else accC.setLatLng([o.lat,o.lng]).setRadius(acc); }
+    if(!accC) accC=L.circle([o.lat,o.lng],{radius:acc,color:'#C42B4E',weight:1,fillOpacity:.08}).addTo(map); else accC.setLatLng([o.lat,o.lng]).setRadius(acc); }
   $('#map-coord').textContent=`📍 ${userLoc.lat}, ${userLoc.lng}`+(userLoc.acc?` · 🎯 isabet ~${userLoc.acc} m`:'');
   fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${userLoc.lat}&lon=${userLoc.lng}&addressdetails=1`)
-    .then(r=>r.json()).then(j=>{ if(j&&j.display_name){
-      const a=j.address||{};
+    .then(r=>r.json()).then(j=>{ if(j&&j.display_name){ const a=j.address||{};
       const nice=[a.road,a.neighbourhood||a.suburb||a.quarter,a.district||a.county,a.city||a.province].filter(Boolean).join(', ');
       $('#map-addr').textContent='≈ '+(nice||j.display_name);
-      if(!$('#map-note').value) $('#map-note').value=(nice||'');
-    }}).catch(()=>{});
+      if(!$('#map-note').value) $('#map-note').value=(nice||''); } }).catch(()=>{});
 }
-function mapHere(){
-  if(!navigator.geolocation) return alert('Konum desteklenmiyor 🥺');
+function mapHere(){ if(!navigator.geolocation) return alert('Konum desteklenmiyor 🥺');
   navigator.geolocation.getCurrentPosition(p=>{
     const ll=[p.coords.latitude,p.coords.longitude];
-    if(!meMk) meMk=L.circleMarker(ll,{radius:7,color:'#fff',weight:2,fillColor:'#C42B4E',fillOpacity:1}).addTo(map);
-    else meMk.setLatLng(ll);
+    if(!meMk) meMk=L.circleMarker(ll,{radius:7,color:'#fff',weight:2,fillColor:'#C42B4E',fillOpacity:1}).addTo(map); else meMk.setLatLng(ll);
     map.setView(ll,17); setPin(ll); setUser({lat:ll[0],lng:ll[1]},p.coords.accuracy);
-  },()=>alert('Konum izni alınamadı 🙈'),{enableHighAccuracy:true,timeout:8000});
-}
+  },()=>alert('Konum izni alınamadı 🙈'),{enableHighAccuracy:true,timeout:8000}); }
 function mapDrop(){ setPin(map.getCenter()); }
-function mapSave(){
-  if(!userLoc) return alert('Önce haritada bir pin bırak 📍');
-  userLoc.addr=$('#map-note').value.trim();
-  localStorage.cs_pin=JSON.stringify(userLoc);
-  go('checkout');
-}
-/* ---- MAĞAZALAR ---- */
+function mapSave(){ if(!userLoc) return alert('Önce haritada bir pin bırak 📍');
+  userLoc.addr=$('#map-note').value.trim(); localStorage.cs_pin=JSON.stringify(userLoc); go('checkout'); }
 function hav(a,b,c,d){const R=6371,r=x=>x*Math.PI/180;
   const s=Math.sin(r(c-a)/2)**2+Math.cos(r(a))*Math.cos(r(c))*Math.sin(r(d-b)/2)**2;
   return Math.round(2*R*Math.asin(Math.sqrt(s))*10)/10;}
@@ -765,19 +611,15 @@ function storesUI(){
   $('#stores-body').innerHTML=Object.entries(BR).map(([k,b])=>{
     const dist=(userLoc&&b.g)?` · ~${hav(userLoc.lat,userLoc.lng,+b.g.split(',')[0],+b.g.split(',')[1])} km`:'';
     return `<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;margin-bottom:14px">
-      <iframe title="harita" style="width:100%;height:150px;border:0;display:block"
-        src="https://maps.google.com/maps?q=${encodeURIComponent(b.a)}&z=15&output=embed"></iframe>
-      <div style="padding:12px">
-        <div style="font:700 15px var(--ui)">${b.n} ${branch===k?'⭐':''}</div>
+      <iframe title="harita" style="width:100%;height:150px;border:0;display:block" src="https://maps.google.com/maps?q=${encodeURIComponent(b.a)}&z=15&output=embed"></iframe>
+      <div style="padding:12px"><div style="font:700 15px var(--ui)">${b.n} ${branch===k?'⭐':''}</div>
         <div style="font-size:12px;color:var(--text2);margin:2px 0 8px">${b.a}${dist}</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <a class="pill" style="text-decoration:none" target="_blank"
-             href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.a)}">🧭 Yol tarifi</a>
+          <a class="pill" style="text-decoration:none" target="_blank" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.a)}">🧭 Yol tarifi</a>
           <a class="pill" style="text-decoration:none" href="tel:+90${b.t.replace(/\D/g,'').slice(1)}">☎ ${b.t}</a>
           <button class="pill" onclick="setBranch('${k}');storesUI()">Şube yap</button>
         </div></div></div>`; }).join('');
 }
-/* ---- PROFİL & AYARLAR ---- */
 function profUI(){
   $('#st-count').textContent=(stamps%10)+' / 10 kaşe';
   $('#stamps').innerHTML=Array.from({length:10},(_,i)=>`<i class="${i<stamps%10?'on':''}"></i>`).join('');
@@ -799,40 +641,32 @@ function resetApp(){ if(confirm('Tüm uygulama verileri sıfırlanacak. Emin mis
   location.reload(); } }
 function logout(){ if(confirm('Misafir oturumu kapatılsın mı? (Sepet temizlenir)')){
   cart={}; sc(); badge(); coupon=''; go('splash'); alert('Görüşmek üzere 🥐'); } }
-/* ---- FORMLAR ---- */
 function pick(el){ el.parentElement.querySelectorAll('.pill').forEach(p=>p.classList.remove('on')); el.classList.add('on'); }
 function pickE(el){ el.classList.toggle('on'); }
-function sendCake(){
-  const k=$('#sc-cake');
+function sendCake(){ const k=$('#sc-cake');
   const gv=s=>k.querySelector(`.pill.on[data-k="${s}"]`)?.dataset.v||'-';
   const txt=`*ÖZEL PASTA TEKLİFİ* 🎂\nAd: ${$('#ck-name').value||'-'}\nTel: ${$('#ck-tel').value||'-'}\nBoy: ${gv('kisi')} kişilik\nLezzet: ${gv('lez')}\nYazı: ${$('#ck-yazi').value||'-'}\nTarih: ${$('#ck-tarih').value||'-'}\nNot: ${$('#ck-not').value||'-'}`;
-  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(txt));
-}
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(txt)); }
 function sendBasket(){
   const ek=[...$('#ekmekler').querySelectorAll('.pill.on')].map(p=>p.dataset.e).join(', ');
   const saat=$('#sc-basket').querySelector('.pill.on[data-k="saat"]')?.dataset.v||'-';
   const txt=`*SABAH SEPETİ ABONELİĞİ* 🥖\nAd: ${$('#bs-name').value||'-'}\nTel: ${$('#bs-tel').value||'-'}\nEkmek: ${ek}\nGünlük adet: ${$('#bs-adet').value}\nSaat: ${saat}\nAdres: ${$('#bs-addr').value||'-'}`;
-  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(txt));
-}
-loadLogos(); chips(); grid(); cats(); badge(); todayRow();
-setTimeout(()=>go('onb'),1600);
-if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
-setTimeout(()=>document.querySelectorAll('a[href*="netlify"],[id*="netlify-badge"],[class*="netlify-badge"]').forEach(e=>e.remove()),600);
-/* ---- APP GİBİ KUR (PWA) ---- */
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(txt)); }
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e;
   if(!localStorage.cs_hideinstall) $('#install-bar').style.display='flex'; });
 function installApp(){
-  if(!deferredPrompt){ alert('Chrome menüsü (⋮) → "Ana ekrana ekle" de; iPhone\'da: Paylaş → Ana Ekrana Ekle 📲'); return; }
+  if(!deferredPrompt){ alert('Chrome menüsü (⋮) → "Ana ekrana ekle"; iPhone\'da: Paylaş → Ana Ekrana Ekle 📲'); return; }
   deferredPrompt.prompt();
-  deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; $('#install-bar').style.display='none'; });
-}
+  deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; $('#install-bar').style.display='none'; }); }
 function hideInstall(){ $('#install-bar').style.display='none'; localStorage.cs_hideinstall='1'; }
-if(/iphone|ipad/i.test(navigator.userAgent) && !localStorage.cs_hideinstall && !window.standalone){
-  window.standalone=true;
+if(/iphone|ipad/i.test(navigator.userAgent)&&!localStorage.cs_hideinstall){
   setTimeout(()=>{ $('#install-bar').style.display='flex';
-    $('#install-bar').querySelector('b').textContent='Paylaş → Ana Ekrana Ekle'; },2500);
-}
+    $('#install-bar').querySelector('b').textContent='Paylaş → Ana Ekrana Ekle'; },2500); }
+loadLogos(); chips(); grid(); cats(); badge(); todayRow();
+setTimeout(()=>go('onb'),1600);
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+setTimeout(()=>document.querySelectorAll('a[href*="netlify"],[id*="netlify-badge"],[class*="netlify-badge"]').forEach(e=>e.remove()),600);
 </script>
 </body>
 </html>
