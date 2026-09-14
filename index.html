@@ -387,6 +387,7 @@ const HH=()=>new Date().getHours()>=20;
 function loadLogos(){ const cand=['logo.png','logo.webp','logo.jpg','logo.jpeg','logo.PNG'];
   document.querySelectorAll('img[data-logo]:not([src])').forEach(img=>{ let i=0;
     const next=()=>{ if(i>=cand.length){ img.remove(); return; } img.src=cand[i++]; };
+    img.onload=()=>{ const svg=img.parentElement.querySelector('svg.lsvg'); if(svg) svg.style.display='none'; };
     img.onerror=next; next(); }); }
 (function(){ const m=new Date().getHours()*60+new Date().getMinutes(); const open=m>=525&&m<1440;
   $('#status').style.color=open?'var(--pistachio)':'var(--primary)';
