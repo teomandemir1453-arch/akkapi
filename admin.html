@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin — Çırağan Sarayı</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+ body{font-family:Manrope,sans-serif;background:#20140D;color:#FFF7EE;margin:0;padding:14px}
+ h1{font-size:19px;margin:0 0 10px} h2{font-size:14px;color:#D9A441;margin:16px 0 6px}
+ .card{background:#2b1c12;border:1px solid #3d2a1a;border-radius:14px;padding:12px;margin-bottom:10px}
+ input,select,textarea{width:100%;background:#170e08;color:#FFF7EE;border:1px solid #3d2a1a;border-radius:10px;padding:10px;font:500 14px Manrope;margin-bottom:8px;box-sizing:border-box}
+ input[type=color]{padding:2px;height:42px} input[type=checkbox]{width:auto}
+ button{border:0;border-radius:10px;padding:11px 16px;font:700 13px Manrope;cursor:pointer}
+ .p{background:#C42B4E;color:#fff}.g{background:#3d2a1a;color:#FFF7EE}.w{background:#25D366;color:#062}
+ .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>*{flex:1;min-width:70px}
+ small{color:#9a8574} .ok{color:#7E9B62;font-weight:800}
+ .tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px}
+ .tab{flex:none;padding:9px 14px;border-radius:999px;background:#2b1c12;color:#9a8574;font:700 12px Manrope;cursor:pointer}
+ .tab.on{background:#C42B4E;color:#fff}
+ .pane{display:none}.pane.on{display:block}
+</style>
+</head>
+<body>
+<h1>🥐 Admin Paneli</h1>
+<div id="login" class="card"><small>GitHub token (bir kez):</small>
+ <input type="password" id="tok" placeholder="ghp_..."><button class="p" onclick="login()">Giriş</button></div>
+
+<div id="app" style="display:none">
+ <div class="card"><span class="ok">●</span> <small id="who"></small>
+  <button class="w" style="float:right" onclick="publish()">🚀 YAYINLA</button></div>
+ <div class="tabs">
+  <div class="tab on" onclick="tab(0,this)">MARKA</div>
+  <div class="tab" onclick="tab(1,this)">MENÜ</div>
+  <div class="tab" onclick="tab(2,this)">KATEGORİ</div>
+  <div class="tab" onclick="tab(3,this)">ŞUBE & AYAR</div>
+  <div class="tab" onclick="tab(4,this)">YEDEK</div>
+ </div>
+
+ <div class="pane on" id="pn0"><div class="card">
+  <small>Uygulama adı / slogan:</small>
+  <div class="row"><input id="c-name"><input id="c-tag"></div>
+  <small>Logo:</small><input type="file" accept="image/*" onchange="upLogo(this)">
+  <small>Ana renk / zemin:</small>
+  <div class="row"><input type="color" id="c-primary"><input type="color" id="c-bg"></div>
+  <small>Instagram / çalışma saatleri:</small>
+  <input id="c-ig">
+  <div class="row"><input type="time" id="c-open"><input type="time" id="c-close"></div>
+ </div></div>
+
+ <div class="pane" id="pn1"><div id="prods"></div><button class="g" onclick="addProd()">+ Ürün Ekle</button></div>
+
+ <div class="pane" id="pn2"><div id="cats"></div><button class="g" onclick="addCat()">+ Kategori</button></div>
+
+ <div class="pane" id="pn3"><div class="card">
+  <div class="row"><input id="f-wa" placeholder="WhatsApp 90..."><input id="f-poset" type="number" placeholder="Poşet ₺"></div>
+  <small>Kuponlar (KOD:yüzde, virgülle):</small><input id="f-codes">
+  <small>Sipariş kanalı (ntfy topic, opsiyonel):</small><input id="f-ntfy" placeholder="örn. ciragan-siparis-8f3k">
+  <h2>Şube 1</h2>
+  <div class="row"><input id="by-n"><input id="by-t"></div><input id="by-a"><input id="by-g" placeholder="koordinat">
+  <h2>Şube 2</h2>
+  <div class="row"><input id="bk-n"><input id="bk-t"></div><input id="bk-a"><input id="bk-g" placeholder="koordinat">
+ </div></div>
+
+ <div class="pane" id="pn4"><div class="card">
+  <small>Tüm ayarı JSON indir (başka müşteriye taşı):</small>
+  <button class="g" onclick="exp()">⬇ Dışa Aktar</button>
+  <small>JSON yükle:</small><input type="file" accept=".json" onchange="imp(this)">
+ </div></div>
+</div>
+
+<script>
+const OWNER='teomandemir1453-arch', REPO='akkapi';
+let TOKEN=localStorage.gh_token||'', M=null;
+const b64e=s=>btoa(unescape(encodeURIComponent(s))), b64d=s=>decodeURIComponent(escape(atob(s)));
+const DEF={name:'Çırağan Sarayı',tag:'taze · günlük · el yapımı · adana',primary:'#C42B4E',bg:'#FFF7EE',
+ ig:'https://www.instagram.com/akkapi.ciragansarayi/',open:'08:45',close:'24:00',ntfy:''};
+async function api(p,o={}){ const r=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/${p}`,
+ Object.assign({headers:{'Authorization':'token '+TOKEN,'Accept':'application/vnd.github+json'}},o));
+ if(!r.ok) throw new Error((await r.text()).slice(0,160)); return r.json(); }
+async function login(){ TOKEN=document.getElementById('tok').value.trim(); localStorage.gh_token=TOKEN; boot(); }
+async function boot(){ try{
+ const f=await api('contents/menu.js'); M=parse(b64d(f.content)); M._sha=f.sha;
+ M.CFG=Object.assign({},DEF,M.CFG);
+ login.style.display='none'; app.style.display='block'; who.textContent=OWNER+'/'+REPO; fill();
+ }catch(e){ alert('Hata: '+e.message); localStorage.gh_token=''; } }
+function parse(s){ return new Function(s+'\nreturn {P,CATS,TODAY,WA,BR,CODES,POSET,CFG:(typeof CFG!=="undefined"?CFG:null)};')(); }
+function tab(i,el){ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on')); el.classList.add('on');
+ document.querySelectorAll('.pane').forEach((p,k)=>p.classList.toggle('on',k===i)); }
+function fill(){ const c=M.CFG;
+ c_name.value=c.name; c_tag.value=c.tag; c_primary.value=c.primary; c_bg.value=c.bg;
+ c_ig.value=c.ig; c_open.value=c.open; c_close.value=c.close;
+ f_wa.value=M.WA; f_poset.value=M.POSET; f_ntfy.value=c.ntfy||'';
+ f_codes.value=Object.entries(M.CODES).map(([k,v])=>k+':'+v).join(', ');
+ by_n.value=M.BR.y.n; by_a.value=M.BR.y.a; by_t.value=M.BR.y.t; by_g.value=M.BR.y.g;
+ bk_n.value=M.BR.k.n; bk_a.value=M.BR.k.a; bk_t.value=M.BR.k.t; bk_g.value=M.BR.k.g;
+ drawCats(); drawProds(); }
+function drawCats(){ cats.innerHTML=M.CATS.map((x,i)=>`<div class="card row">
+ <input value="${x.e}" oninput="M.CATS[${i}].e=this.value">
+ <input value="${x.l}" oninput="M.CATS[${i}].l=this.value">
+ <input type="color" value="${x.m}" oninput="M.CATS[${i}].m=this.value">
+ <input type="color" value="${x.s}" oninput="M.CATS[${i}].s=this.value">
+ <button class="g" onclick="M.CATS.splice(${i},1);drawCats();drawProds()">Sil</button></div>`).join(''); }
+function drawProds(){ prods.innerHTML=M.P.map((p,i)=>`<div class="card">
+ <div class="row"><input value="${p.e}" oninput="M.P[${i}].e=this.value">
+ <input value="${p.n}" oninput="M.P[${i}].n=this.value">
+ <input type="number" value="${p.p}" oninput="M.P[${i}].p=+this.value"></div>
+ <div class="row"><select onchange="M.P[${i}].f=+this.value">${M.CATS.map((c,ci)=>`<option value="${ci}" ${p.f===ci?'selected':''}>${c.l}</option>`).join('')}</select>
+ <input value="${p.d||''}" placeholder="açıklama" oninput="M.P[${i}].d=this.value"></div>
+ <div class="row"><label class="g" style="padding:8px;border-radius:8px"><input type="checkbox" ${M.TODAY.includes(p.id)?'checked':''} onchange="togT(${p.id},this.checked)">♨ bugün</label>
+ <label class="g" style="padding:8px;border-radius:8px"><input type="checkbox" ${p.chef?'checked':''} onchange="M.P[${i}].chef=this.checked?1:0">⭐ şef</label>
+ <input type="file" accept="image/*" onchange="upImg(this,${p.id})">
+ <button class="g" onclick="M.P.splice(${i},1);drawProds()">Sil</button></div>
+ <small>id:${p.id} → urunler/${p.id}.jpg</small></div>`).join(''); }
+function togT(id,on){ if(on&&!M.TODAY.includes(id))M.TODAY.push(id); if(!on)M.TODAY=M.TODAY.filter(x=>x!==id); }
+function addCat(){ M.CATS.push({l:'Yeni Kategori',m:'#C98A3D',s:'#FAEEDC',e:'🍽'}); drawCats(); drawProds(); }
+function addProd(){ const id=Math.max(0,...M.P.map(p=>p.id))+1;
+ M.P.push({id,n:'Yeni Ürün',d:'',p:10,e:'🍽',f:0,img:''}); drawProds(); }
+async function put(path,b64,msg){ let sha=null; try{ sha=(await api('contents/'+path)).sha; }catch(e){}
+ await api('contents/'+path,{method:'PUT',body:JSON.stringify({message:msg,content:b64,sha})}); }
+async function file64(inp){ const f=inp.files[0]; if(!f)return null;
+ const d=await new Promise(r=>{const x=new FileReader();x.onload=r;x.readAsDataURL(f);}); return d.target.result.split(',')[1]; }
+async function upImg(inp,id){ const b=await file64(inp); if(!b)return;
+ await put('urunler/'+id+'.jpg',b,'görsel '+id); alert('Görsel yüklendi ✅'); }
+async function upLogo(inp){ const b=await file64(inp); if(!b)return;
+ await put('logo.png',b,'logo'); alert('Logo yüklendi ✅'); }
+function readCFG(){ return {name:c_name.value,tag:c_tag.value,primary:c_primary.value,bg:c_bg.value,
+ ig:c_ig.value,open:c_open.value,close:c_close.value,ntfy:f_ntfy.value.trim()}; }
+function build(){ M.CFG=readCFG();
+ const codes=f_codes.value.split(',').map(s=>s.trim()).filter(Boolean).map(s=>{const[k,v]=s.split(':');return `'${k.trim()}':${+v||0}`;}).join(',');
+ return `/* ÇIRAĞAN SARAYI — admin üretti */\nconst CFG=${JSON.stringify(M.CFG)};\nconst POSET=${+f_poset.value||1};\nconst WA='${f_wa.value}';\nconst CODES={${codes}};\nconst TODAY=[${M.TODAY.join(',')}];\nconst BR={\n y:{n:'${by_n.value}',a:'${by_a.value}',t:'${by_t.value}',g:'${by_g.value}'},\n k:{n:'${bk_n.value}',a:'${bk_a.value}',t:'${bk_t.value}',g:'${bk_g.value}'}};\nconst CATS=${JSON.stringify(M.CATS)};\nconst P=${JSON.stringify(M.P.map(p=>({id:p.id,n:p.n,d:p.d,p:p.p,e:p.e,f:p.f,img:p.img||'',chef:p.chef?1:0})))};\n`; }
+async function publish(){ if(!confirm('Yayınlanacak, müşteriler günceli görür. Emin misin?'))return;
+ await put('menu.js',b64e(build()),'admin: menü güncellendi'); alert('YAYINLANDI 🚀'); }
+function exp(){ const a=document.createElement('a');
+ a.href=URL.createObjectURL(new Blob([JSON.stringify({CFG:readCFG(),POSET:+f_poset.value,WA:f_wa.value,CODES:f_codes.value,TODAY:M.TODAY,BR:{y:{n:by_n.value,a:by_a.value,t:by_t.value,g:by_g.value},k:{n:bk_n.value,a:bk_a.value,t:bk_t.value,g:bk_g.value}},CATS:M.CATS,P:M.P},null,1)]));
+ a.download='pastane-config.json'; a.click(); }
+async function imp(inp){ const f=inp.files[0]; if(!f)return; const j=JSON.parse(await f.text());
+ M.CFG=Object.assign({},DEF,j.CFG); M.POSET=j.POSET; M.WA=j.WA; M.CODES={}; M.TODAY=j.TODAY||[]; M.BR=j.BR; M.CATS=j.CATS; M.P=j.P;
+ f_codes.value=j.CODES||''; fill(); alert('Yüklendi → YAYINLA de ✅'); }
+if(TOKEN) boot();
+</script>
+</body>
+</html>
