@@ -28,10 +28,11 @@
  button.btn.install{background:linear-gradient(135deg,var(--gold),#b8862f);border-color:var(--gold);color:var(--bg)}
  button.btn.install small{color:#4a3208}
  button.btn.install .ic{background:var(--bg)}
+ button.btn.install.ready{animation:pulse 1.6s infinite}
+ @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(217,164,65,.55)}70%{box-shadow:0 0 0 14px rgba(217,164,65,0)}100%{box-shadow:0 0 0 0 rgba(217,164,65,0)}}
  a.btn.main{background:var(--rose);border-color:var(--rose)}
  a.btn.main small{color:#ffd9e0}
  a.btn.wa .ic{background:#25D366}
- a.btn.menu .ic{background:var(--gold);color:var(--bg)}
  a.btn.ig .ic{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
  a.btn.tel .ic{background:#3d2a1a}
  a.btn.map .ic{background:#3d2a1a}
@@ -74,22 +75,30 @@
   <div class="foot">Akkapı Mah. Şıh Cemil Cad. No:124/A · Seyhan/Adana<br>Her gün 08:45 – 24:00 · Çırağan Sarayı Pasta & Fırın</div>
 </div>
 <script>
-let deferred=null;
-function installApp(){
-  if(deferred){ deferred.prompt();
-    deferred.userChoice.then(()=>{ deferred=null; });
-    return; }
-  const ios=/iphone|ipad/i.test(navigator.userAgent);
-  alert(ios
-    ?'Safari\'de: Paylaş simgesi → "Ana Ekrana Ekle" de 📲'
-    :'Chrome menüsü (⋮) → "Ana ekrana ekle / Uygulamayı yükle" de 📲');
-}
-window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferred=e; });
+let deferred=null, trying=false;
+const btn=document.getElementById('installBtn');
+const lbl=()=>btn.querySelector('span:last-child');
+window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferred=e; btn.classList.add('ready'); });
 window.addEventListener('appinstalled',()=>{
-  const b=document.getElementById('installBtn');
-  b.querySelector('span:last-child').innerHTML='Uygulama kuruldu ✓<small>ana ekranındaki ikonla aç</small>';
-  b.disabled=true; b.style.opacity=.6;
+  lbl().innerHTML='Uygulama kuruldu ✓<small>ana ekranındaki ikonla aç</small>';
+  btn.disabled=true; btn.style.opacity=.6; btn.classList.remove('ready');
 });
+function installApp(){
+  if(deferred){ deferred.prompt(); deferred.userChoice.then(()=>{deferred=null;}); return; }
+  if(trying) return; trying=true;
+  lbl().innerHTML='Hazırlanıyor…<small>bir saniye</small>';
+  let n=0;
+  const t=setInterval(()=>{
+    n++;
+    if(deferred){ clearInterval(t); trying=false; btn.classList.add('ready');
+      lbl().innerHTML='Uygulamayı Yükle<small>ana ekrana ekle, app gibi açılır</small>';
+      deferred.prompt(); deferred.userChoice.then(()=>{deferred=null;}); return; }
+    if(n>=4){ clearInterval(t); trying=false;
+      lbl().innerHTML='Uygulamayı Yükle<small>ana ekrana ekle, app gibi açılır</small>';
+      const ios=/iphone|ipad/i.test(navigator.userAgent);
+      alert(ios?'Safari\'de: Paylaş simgesi → "Ana Ekrana Ekle" 📲':'Chrome menüsü (⋮) → "Ana ekrana ekle" 📲'); }
+  },600);
+}
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body>
