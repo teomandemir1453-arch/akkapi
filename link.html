@@ -37,6 +37,12 @@
  a.btn.tel .ic{background:#3d2a1a}
  a.btn.map .ic{background:#3d2a1a}
  .foot{margin-top:18px;font-size:11px;color:var(--soft);line-height:1.6}
+ .mask{display:none;position:fixed;inset:0;z-index:90;background:rgba(20,12,8,.96);color:var(--cream);padding:24px;overflow:auto}
+ .mask .box{max-width:360px;margin:5vh auto;background:var(--card);border:1px solid #3d2a1a;border-radius:20px;padding:22px}
+ .mask h2{font-family:Fraunces,serif;text-align:center;font-size:20px;margin:8px 0 4px}
+ .mask .sub{text-align:center;font-size:12px;color:var(--soft);margin-bottom:14px}
+ .mask .steps{font-size:14px;line-height:2}
+ .mask .steps b{color:var(--gold)}
 </style>
 </head>
 <body>
@@ -74,10 +80,25 @@
 
   <div class="foot">Akkapı Mah. Şıh Cemil Cad. No:124/A · Seyhan/Adana<br>Her gün 08:45 – 24:00 · Çırağan Sarayı Pasta & Fırın</div>
 </div>
+
+<div class="mask" id="inappMask">
+  <div class="box">
+    <div style="text-align:center;font-size:42px">📱</div>
+    <h2>Instagram içindesin</h2>
+    <p class="sub">Kurulum için önce gerçek tarayıcıya geçelim</p>
+    <div class="steps" id="inappSteps"></div>
+    <button class="btn main" style="margin-top:14px" onclick="copyLink()">🔗 Linki kopyala</button>
+    <button class="btn" style="margin-top:6px" onclick="document.getElementById('inappMask').style.display='none'">Şimdilik kapat</button>
+  </div>
+</div>
+
 <script>
 let deferred=null, trying=false;
 const btn=document.getElementById('installBtn');
 const lbl=()=>btn.querySelector('span:last-child');
+const UA=navigator.userAgent||'';
+const inApp=/instagram|fbav|fban|facebook|twitter|linkedin|whatsapp|line\/|tiktok/i.test(UA);
+const isIOS=/iphone|ipad|ipod/i.test(UA);
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferred=e; btn.classList.add('ready'); });
 window.addEventListener('appinstalled',()=>{
   lbl().innerHTML='Uygulama kuruldu ✓<small>ana ekranındaki ikonla aç</small>';
@@ -95,9 +116,21 @@ function installApp(){
       deferred.prompt(); deferred.userChoice.then(()=>{deferred=null;}); return; }
     if(n>=4){ clearInterval(t); trying=false;
       lbl().innerHTML='Uygulamayı Yükle<small>ana ekrana ekle, app gibi açılır</small>';
-      const ios=/iphone|ipad/i.test(navigator.userAgent);
-      alert(ios?'Safari\'de: Paylaş simgesi → "Ana Ekrana Ekle" 📲':'Chrome menüsü (⋮) → "Ana ekrana ekle" 📲'); }
+      alert(isIOS
+        ?'KURULUM (iPhone / Safari):\n\n1) Alttaki PAYLAŞ simgesine dokun\n   (kare + yukarı ok)\n2) "Ana Ekrana Ekle" seç\n3) Sağ üstten "Ekle" de\n\nBitti! Ana ekranında Çırağan Sarayı logon 🥐'
+        :'KURULUM (Chrome):\n\n1) Üst SAĞdaki ⋮ (üç nokta) simgesine dokun\n2) "Ana ekrana ekle" veya\n   "Uygulamayı yükle" seç\n3) Çıkan kutuda "Ekle" de\n\nBitti! Ana ekranında Çırağan Sarayı logon 🥐'); }
   },600);
+}
+function copyLink(){
+  if(navigator.clipboard) navigator.clipboard.writeText(location.href)
+    .then(()=>alert('Link kopyalandı 🔗\nŞimdi tarayıcıya yapıştırıp aç.')).catch(()=>prompt('Linki kopyala:',location.href));
+  else prompt('Linki kopyala:',location.href);
+}
+if(inApp){
+  document.getElementById('inappSteps').innerHTML = isIOS
+   ?'<b>1)</b> Üst SAĞdaki <b>⋯</b> simgesine dokun<br><b>2)</b> <b>"Safari\'de Aç"</b> seç<br><b>3)</b> Safari\'de alttaki <b>Paylaş</b> → <b>"Ana Ekrana Ekle"</b><br><b>4)</b> Sağ üstten <b>Ekle</b> — bitti, ana ekranında logomuz 🥐'
+   :'<b>1)</b> Üst SAĞdaki <b>⋮</b> (üç nokta) simgesine dokun<br><b>2)</b> <b>"Tarayıcıda aç"</b> veya <b>"Chrome\'da aç"</b> seç<br><b>3)</b> Açılan Chrome\'da yine <b>⋮</b> → <b>"Ana ekrana ekle"</b><br><b>4)</b> <b>Ekle</b> — bitti, ana ekranında logomuz 🥐';
+  document.getElementById('inappMask').style.display='block';
 }
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
