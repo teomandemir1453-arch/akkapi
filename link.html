@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Çırağan Sarayı — Pasta & Fırın</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#C42B4E">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%23575757%22/><text x=%2250%22 y=%2262%22 text-anchor=%22middle%22 font-size=%2230%22 fill=%22%23F0932A%22>Ç</text></svg>'>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;800&family=Manrope:wght@400;600;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+ :root{--bg:#20140D;--card:#2b1c12;--cream:#FFF7EE;--gold:#D9A441;--rose:#C42B4E;--soft:#8A7466}
+ *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+ body{font-family:Manrope,sans-serif;background:var(--bg);color:var(--cream);min-height:100vh;
+   display:flex;align-items:center;justify-content:center;padding:24px}
+ .wrap{width:100%;max-width:400px;text-align:center}
+ .logo{width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);
+   margin:0 auto 12px;display:block;background:#575757}
+ h1{font-family:Fraunces,serif;font-size:26px;font-weight:800;letter-spacing:.5px}
+ .tag{font-family:Caveat,cursive;color:var(--gold);font-size:19px;margin:4px 0 20px}
+ a.btn,button.btn{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid #3d2a1a;
+   border-radius:16px;padding:15px 18px;margin-bottom:10px;text-decoration:none;color:var(--cream);
+   font:700 15px Manrope;transition:.15s;width:100%;cursor:pointer;text-align:left}
+ a.btn:active,button.btn:active{transform:scale(.98)}
+ .ic{width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
+ small{display:block;font:500 11px Manrope;color:var(--soft);margin-top:2px}
+ button.btn.install{background:linear-gradient(135deg,var(--gold),#b8862f);border-color:var(--gold);color:var(--bg)}
+ button.btn.install small{color:#4a3208}
+ button.btn.install .ic{background:var(--bg)}
+ a.btn.main{background:var(--rose);border-color:var(--rose)}
+ a.btn.main small{color:#ffd9e0}
+ a.btn.wa .ic{background:#25D366}
+ a.btn.menu .ic{background:var(--gold);color:var(--bg)}
+ a.btn.ig .ic{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+ a.btn.tel .ic{background:#3d2a1a}
+ a.btn.map .ic{background:#3d2a1a}
+ .foot{margin-top:18px;font-size:11px;color:var(--soft);line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="logo" id="logo" src="link-logo.png" alt="Çırağan Sarayı"
+       onerror="this.onerror=null;this.src='logo.png';">
+  <h1>ÇIRAĞAN SARAYI</h1>
+  <div class="tag">taze · günlük · el yapımı · adana</div>
+
+  <button class="btn install" id="installBtn" onclick="installApp()">
+    <span class="ic">📲</span>
+    <span>Uygulamayı Yükle<small>ana ekrana ekle, app gibi açılır</small></span>
+  </button>
+
+  <a class="btn main" href="index.html">
+    <span class="ic">🥐</span>
+    <span>Vitrini Aç & Sipariş Ver<small>menü, sepet, WhatsApp sipariş</small></span>
+  </a>
+  <a class="btn wa" href="https://wa.me/905550160001" target="_blank">
+    <span class="ic">💬</span>
+    <span>WhatsApp Sipariş<small>direkt yaz, hemen dönelim</small></span>
+  </a>
+  <a class="btn ig" href="https://www.instagram.com/akkapi.ciragansarayi/" target="_blank">
+    <span class="ic">📸</span>
+    <span>Instagram<small>@akkapi.ciragansarayi</small></span>
+  </a>
+  <a class="btn tel" href="tel:+903224282101">
+    <span class="ic">☎</span>
+    <span>Ara<small>0322 428 21 01</small></span>
+  </a>
+  <a class="btn map" href="https://www.google.com/maps/search/?api=1&query=Akkapı+Mah.+Şıh+Cemil+Cad.+No:124/A+Seyhan/Adana" target="_blank">
+    <span class="ic">📍</span>
+    <span>Konum & Yol Tarifi<small>Akkapı · Seyhan · Adana</small></span>
+  </a>
+
+  <div class="foot">Akkapı Mah. Şıh Cemil Cad. No:124/A · Seyhan/Adana<br>Her gün 08:45 – 24:00 · Çırağan Sarayı Pasta & Fırın</div>
+</div>
+<script>
+let deferred=null;
+function installApp(){
+  if(deferred){ deferred.prompt();
+    deferred.userChoice.then(()=>{ deferred=null; });
+    return; }
+  const ios=/iphone|ipad/i.test(navigator.userAgent);
+  alert(ios
+    ?'Safari\'de: Paylaş simgesi → "Ana Ekrana Ekle" de 📲'
+    :'Chrome menüsü (⋮) → "Ana ekrana ekle / Uygulamayı yükle" de 📲');
+}
+window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferred=e; });
+window.addEventListener('appinstalled',()=>{
+  const b=document.getElementById('installBtn');
+  b.querySelector('span:last-child').innerHTML='Uygulama kuruldu ✓<small>ana ekranındaki ikonla aç</small>';
+  b.disabled=true; b.style.opacity=.6;
+});
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>
