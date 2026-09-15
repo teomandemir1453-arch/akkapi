@@ -263,6 +263,12 @@ textarea.fld{min-height:70px;resize:vertical}
 
   <section class="screen" id="sc-set">
     <h2 class="disp" style="font-size:24px;font-weight:800;margin-bottom:16px">Ayarlar</h2>
+    <div style="font:700 12px var(--ui);color:var(--text2);margin-bottom:6px">HESABIM</div>
+    <input class="fld" id="set-name" placeholder="Ad Soyad">
+    <input class="fld" id="set-tel" placeholder="Telefon (5xx xxx xx xx)">
+    <input class="fld" id="set-mail" placeholder="E-posta">
+    <textarea class="fld" id="set-addr" placeholder="Adres"></textarea>
+    <button class="btn primary block" style="margin-bottom:16px" onclick="saveProf()">Bilgileri Kaydet</button>
     <div style="font:700 12px var(--ui);color:var(--text2);margin-bottom:6px">ŞUBE</div>
     <div style="display:flex;gap:8px;margin-bottom:16px">
       <button class="pill" id="br-y" onclick="setBranch('y')">Yeşiloba TOKİ</button>
@@ -274,7 +280,7 @@ textarea.fld{min-height:70px;resize:vertical}
     <div class="mrow" onclick="wipeCart()"><span class="ms">delete_sweep</span>Sepeti temizle<span class="ms chev">chevron_right</span></div>
     <div class="mrow" onclick="wipeFav()"><span class="ms">heart_broken</span>Favorileri temizle<span class="ms chev">chevron_right</span></div>
     <div class="mrow" style="color:var(--primary)" onclick="resetApp()"><span class="ms" style="color:var(--primary)">restart_alt</span>Uygulamayı sıfırla<span class="ms chev">chevron_right</span></div>
-    <p style="font-size:11px;color:var(--text2);margin-top:16px;text-align:center">Çırağan Sarayı v17 · Adana · @akkapi.ciragansarayi</p>
+    <p style="font-size:11px;color:var(--text2);margin-top:16px;text-align:center">Çırağan Sarayı v18 · Adana · @akkapi.ciragansarayi</p>
   </section>
 
   <section class="screen" id="sc-cake">
@@ -389,9 +395,9 @@ function go(id,push=true){
   document.querySelectorAll('.screen').forEach(x=>x.classList.remove('on'));
   $('#sc-'+id).classList.add('on');
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.s===id));
-  $('#phone').classList.toggle('notab', !['home','cats','cart','profile'].includes(id));
+  $('#phone').classList.toggle('notab', ['splash','reg'].includes(id));
   $('#gback').style.display = SUB.includes(id)?'flex':'none';
-  if(push){ navStack.push(id); } 
+  if(push){ navStack.push(id); }
   if(id!=='splash'&&id!=='reg') localStorage.cs_screen=id;
   if(id==='cart') cartUI();
   if(id==='checkout'){ const p=prof||{};
@@ -542,6 +548,15 @@ function saveReg(){ const n=$('#rg-name').value.trim(), t=$('#rg-tel').value.rep
   localStorage.cs_profile=JSON.stringify(prof);
   showToast('Hoş geldin '+n.split(' ')[0]+' 🥐'); go('home'); }
 function guest(){ localStorage.cs_guest='1'; prof=null; go('home'); }
+function saveProf(){
+  const n=$('#set-name').value.trim();
+  if(!n) return alert('Ad Soyad gerekli 🥐');
+  const t=$('#set-tel').value.replace(/\D/g,'');
+  prof={name:n, tel:t?'+90'+t:'', mail:$('#set-mail').value.trim(), addr:$('#set-addr').value.trim()};
+  localStorage.cs_profile=JSON.stringify(prof);
+  localStorage.cs_guest='1';
+  profUI(); showToast('Bilgiler kaydedildi ✅');
+}
 function addrUI(){
   $('#addr-list').innerHTML=addr.map((a,i)=>`<div class="lrow"><div class="ic"><span class="ms" style="font-size:18px">location_on</span></div>
     <div style="flex:1"><div style="font:700 13.5px var(--ui)">${a.t} ${i===adDef?'⭐':''}</div><div style="font-size:11.5px;color:var(--text2)">${a.a}</div></div>
@@ -642,6 +657,11 @@ function profUI(){
   $('#pr-adr').textContent=addr.length; $('#pr-bd').textContent=bday.length;
 }
 function setUI(){
+  const p=prof||{};
+  $('#set-name').value=p.name||'';
+  $('#set-tel').value=(p.tel||'').replace('+90','');
+  $('#set-mail').value=p.mail||'';
+  $('#set-addr').value=p.addr||'';
   $('#br-y').classList.toggle('on',branch==='y'); $('#br-k').classList.toggle('on',branch==='k');
   $('#sw-notif').classList.toggle('on',!!S.notif); $('#sw-hh').classList.toggle('on',!!S.hh);
 }
