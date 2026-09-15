@@ -59,6 +59,8 @@ body{background:#E9DFD3;font-family:var(--ui);color:var(--text1)}
 textarea.fld{min-height:70px;resize:vertical}
 .pill{border:1px solid var(--border);background:var(--surface);border-radius:var(--r-pill);padding:9px 16px;font:700 12.5px var(--ui);color:var(--text2);cursor:pointer}
 .pill.on{background:var(--primary-soft);border-color:var(--primary);color:var(--primary)}
+.pill.reward{background:var(--gold);color:var(--vitrin);border-color:var(--gold)}
+.pill.reward.on{background:var(--vitrin);color:var(--gold);border-color:var(--gold)}
 .banner{background:var(--vitrin);border:1px solid rgba(217,164,65,.35);border-radius:var(--r-card);padding:18px;color:#fff;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;cursor:pointer}
 .banner .script{color:var(--gold)}
 .banner h3{font:700 19px var(--display);margin:3px 0}
@@ -102,12 +104,15 @@ textarea.fld{min-height:70px;resize:vertical}
 .mrow .ms.chev{margin-left:auto;font-size:16px;color:var(--text2)}
 .mrow small{margin-left:auto;font:700 11px var(--ui);color:var(--text2);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-pill);padding:2px 8px}
 .trow{display:flex;justify-content:space-between;padding:6px 4px;font:600 13px var(--ui);color:var(--text2)}
+.trow.gift{background:var(--caramel-soft);color:var(--choco-ink);border-radius:8px;padding:8px 10px;margin-bottom:6px}
 .tl div{display:flex;gap:10px;align-items:flex-start;font:600 13px var(--ui);color:var(--text2);padding:6px 0}
 .tl i{width:12px;height:12px;border-radius:50%;background:var(--border);margin-top:2px;flex:none}
 .tl div.on{color:var(--text1)}.tl div.on i{background:var(--pistachio)}
 .stamps{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
 .stamps i{width:16px;height:16px;border-radius:50%;border:1.5px dashed var(--caramel)}
 .stamps i.on{background:var(--caramel);border-style:solid}
+.stamps i.gift{background:var(--gold);border-style:solid;border-color:var(--gold)}
+.reward-badge{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--vitrin);padding:6px 12px;border-radius:999px;font:700 12px var(--ui);margin-top:6px}
 .swt{margin-left:auto;width:44px;height:26px;border-radius:999px;background:var(--border);position:relative;cursor:pointer;transition:.2s;flex:none}
 .swt.on{background:var(--pistachio)}
 .swt i{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}
@@ -117,7 +122,7 @@ textarea.fld{min-height:70px;resize:vertical}
 .leaflet-container{font-family:var(--ui);border-radius:var(--r-card)}
 #toast{position:absolute;left:50%;bottom:86px;transform:translateX(-50%) translateY(20px);background:var(--vitrin);color:#fff;padding:10px 18px;border-radius:999px;font:700 13px var(--ui);opacity:0;transition:.25s;z-index:60;pointer-events:none;white-space:nowrap}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-/* ==== MASAÜSTÜ / WEB GÖRÜNÜMÜ — PC'de site, telefonda app kalır ==== */
+/* ==== MASAÜSTÜ / WEB GÖRÜNÜMÜ ==== */
 @media(min-width:900px){
   .stage{display:block;min-height:100vh;padding:0;background:var(--bg)}
   .phone{width:100%;max-width:none;height:auto;min-height:100vh;border:0;border-radius:0;box-shadow:none;overflow:visible;background:var(--bg)}
@@ -238,6 +243,10 @@ textarea.fld{min-height:70px;resize:vertical}
     <div style="display:flex;gap:8px;margin-bottom:12px">
       <button class="pill on" id="p-nakit" onclick="setPay('nakit')">💵 Kapıda Nakit</button>
       <button class="pill" id="p-kart" onclick="setPay('kart')">💳 Kapıda Kart</button></div>
+    <div id="rew-row" style="display:none;gap:8px;margin-bottom:12px;align-items:center">
+      <button class="pill reward" id="rew-btn" onclick="toggleReward()">🎁 Hediye simit kullan</button>
+      <span id="rew-info" style="font:600 11px var(--ui);color:var(--caramel)"></span>
+    </div>
     <div style="display:flex;gap:8px;margin-bottom:12px">
       <input class="fld" id="co-code" style="margin:0" placeholder="Kupon kodu (ILKSIPARIS)">
       <button class="pill" onclick="applyCode()">Uygula</button></div>
@@ -302,7 +311,7 @@ textarea.fld{min-height:70px;resize:vertical}
     <div class="mrow" onclick="wipeCart()"><span class="ms">delete_sweep</span>Sepeti temizle<span class="ms chev">chevron_right</span></div>
     <div class="mrow" onclick="wipeFav()"><span class="ms">heart_broken</span>Favorileri temizle<span class="ms chev">chevron_right</span></div>
     <div class="mrow" style="color:var(--primary)" onclick="resetApp()"><span class="ms" style="color:var(--primary)">restart_alt</span>Uygulamayı sıfırla<span class="ms chev">chevron_right</span></div>
-    <p style="font-size:11px;color:var(--text2);margin-top:16px;text-align:center">Çırağan Sarayı v19 · Adana · @akkapi.ciragansarayi</p>
+    <p style="font-size:11px;color:var(--text2);margin-top:16px;text-align:center">Çırağan Sarayı v21 · Adana · @akkapi.ciragansarayi</p>
   </section>
 
   <section class="screen" id="sc-cake">
@@ -346,11 +355,17 @@ textarea.fld{min-height:70px;resize:vertical}
   <section class="screen" id="sc-profile">
     <div style="display:flex;align-items:center;gap:14px;margin:8px 0 14px">
       <span class="logoWrap" style="width:60px;height:60px"><svg class="lsvg"><use href="#logoSVG"/></svg><img data-logo alt=""></span>
-      <div><div class="disp" style="font-size:19px;font-weight:700" id="pr-name">Misafir</div><div class="script" style="font-size:16px">gold vitrin üyesi</div></div></div>
+      <div style="flex:1">
+        <div class="disp" style="font-size:19px;font-weight:700" id="pr-name">Misafir</div>
+        <div class="script" style="font-size:16px">gold vitrin üyesi</div>
+        <div id="pr-reward" style="display:none"></div>
+      </div>
+    </div>
     <div style="background:var(--caramel-soft);border:1px solid var(--border);border-radius:var(--r-card);padding:14px;margin-bottom:14px">
       <div style="font:700 13px var(--ui)">🥐 Sadakat Kartı — <span id="st-count"></span></div>
       <div class="stamps" id="stamps"></div>
-      <div style="font-size:11.5px;color:var(--text2)">10 kaşede 1 simit bizden. Her sipariş 1 kaşe.</div></div>
+      <div style="font-size:11.5px;color:var(--text2)">10 kaşede 1 hediye simit. Hediye birikir, istediğin siparişte kullanırsın 🎁</div>
+    </div>
     <div class="mrow" onclick="go('track')"><span class="ms">receipt_long</span>Siparişlerim<small id="pr-ord">0</small></div>
     <div class="mrow" onclick="setFlt(-1)"><span class="ms">favorite</span>Favorilerim<small id="pr-fav">0</small></div>
     <div class="mrow" onclick="go('addr')"><span class="ms">location_on</span>Adreslerim<small id="pr-adr">0</small></div>
@@ -379,6 +394,24 @@ textarea.fld{min-height:70px;resize:vertical}
 
   <button class="gback" id="gback" onclick="back()"><span class="ms">arrow_back</span></button>
   <div id="toast"></div>
+
+  <div id="install-bar" style="display:none;position:absolute;left:12px;right:12px;bottom:78px;z-index:30;background:var(--vitrin);border:1px solid rgba(217,164,65,.35);border-radius:var(--r-card);padding:12px 14px;align-items:center;gap:10px;color:#fff">
+    <span class="logoWrap" style="width:38px;height:38px"><svg class="lsvg"><use href="#logoSVG"/></svg></span>
+    <div style="flex:1;font:600 12px var(--ui)">Telefona kur — <b style="color:var(--gold)">app gibi</b> açılır</div>
+    <button class="btn mini primary" onclick="installApp()">Kur</button>
+    <button class="btn mini ghost" style="color:#fff" onclick="hideInstall()">✕</button>
+  </div>
+
+  <div id="inapp-mask" style="display:none;position:absolute;inset:0;z-index:70;background:rgba(32,20,13,.94);color:#fff;padding:24px;overflow:auto">
+    <div style="max-width:340px;margin:8vh auto;text-align:center">
+      <span class="logoWrap" style="width:84px;height:84px;margin:0 auto"><svg class="lsvg"><use href="#logoSVG"/></svg></span>
+      <h2 class="disp" style="font-size:22px;font-weight:800;margin:12px 0 6px">Az kaldı! 📲</h2>
+      <p style="font-size:13.5px;color:#e8d9c8;line-height:1.7" id="inapp-text"></p>
+      <button class="btn primary block" style="margin-top:14px" onclick="copyLink()">🔗 Linki kopyala</button>
+      <button class="btn ghost block" style="color:#e8d9c8;margin-top:6px" onclick="document.getElementById('inapp-mask').style.display='none'">Şimdilik böyle devam et</button>
+    </div>
+  </div>
+
   <nav class="tabbar">
     <button class="tab on" data-s="home" onclick="go('home')"><span class="ms">home</span>Vitrin</button>
     <button class="tab" data-s="cats" onclick="go('cats')"><span class="ms">bakery_dining</span>Menü</button>
@@ -392,14 +425,16 @@ let cart=JSON.parse(localStorage.cs_cart||'{}');
 let fav=new Set(JSON.parse(localStorage.cs_fav||'[]'));
 let orders=JSON.parse(localStorage.cs_orders||'[]');
 let stamps=+(localStorage.cs_stamps||0);
+let rewards=+(localStorage.cs_rewards||0);
 let branch=localStorage.cs_branch||'y';
 let addr=JSON.parse(localStorage.cs_addr||'[]'); let adDef=+(localStorage.cs_addef||0);
 let bday=JSON.parse(localStorage.cs_bday||'[]');
 let S=JSON.parse(localStorage.cs_set||'{"notif":true,"hh":true}');
 let userLoc=JSON.parse(localStorage.cs_pin||'null');
 let prof=JSON.parse(localStorage.cs_profile||'null');
-let flt=0,q='',cur=0,qty=1,coupon='',mode='ev',pay='nakit',mapReturn='checkout';
+let flt=0,q='',cur=0,qty=1,coupon='',mode='ev',pay='nakit',mapReturn='checkout',useReward=false;
 let navStack=[];
+let suppressPop=false;
 const $=s=>document.querySelector(s);
 const sc=()=>localStorage.cs_cart=JSON.stringify(cart);
 const localOf=p=>'urunler/'+p.id+'.jpg';
@@ -410,9 +445,7 @@ function loadLogos(){ const cand=['logo.png','logo.webp','logo.jpg','logo.jpeg',
   document.querySelectorAll('img[data-logo]:not([src])').forEach(img=>{ let i=0;
     const hide=()=>{ const svg=img.parentElement.querySelector('svg.lsvg'); if(svg) svg.style.display='none'; };
     const next=()=>{ if(i>=cand.length){ img.remove(); return; } img.src=cand[i++]; };
-    img.onload=hide;
-    img.onerror=next;
-    next();
+    img.onload=hide; img.onerror=next; next();
     if(img.complete&&img.naturalWidth) hide();
   }); }
 function showToast(m){ const t=$('#toast'); t.textContent=m; t.classList.add('on');
@@ -423,15 +456,20 @@ function go(id,push=true){
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.s===id));
   $('#phone').classList.toggle('notab', ['splash','reg'].includes(id));
   $('#gback').style.display = SUB.includes(id)?'flex':'none';
-  if(push){ navStack.push(id); }
+  if(push){
+    suppressPop=true;
+    history.pushState({screen:id},'','#'+id);
+    setTimeout(()=>{suppressPop=false;},0);
+    navStack.push(id);
+  }
   if(id!=='splash'&&id!=='reg') localStorage.cs_screen=id;
   if(id==='cart') cartUI();
-  if(id==='checkout'){ const p=prof||{};
+  if(id==='checkout'){ const p=prof||{}; useReward=false;
     if(!$('#co-name').value&&p.name)$('#co-name').value=p.name;
     if(!$('#co-tel').value&&p.tel)$('#co-tel').value=p.tel;
     if(!$('#co-addr').value){ if(addr[adDef])$('#co-addr').value=addr[adDef].t+': '+addr[adDef].a; else if(p.addr)$('#co-addr').value=p.addr; }
     if(userLoc){ $('#pin-state').textContent='📍 pin kayıtlı — siparişe eklenecek'; $('#pin-state').style.color='var(--pistachio)'; }
-    coSum(); }
+    rewardUI(); coSum(); }
   if(id==='reg'&&userLoc) $('#rg-pin').textContent='📍 pin kayıtlı';
   if(id==='track') trackUI();
   if(id==='profile') profUI();
@@ -441,7 +479,22 @@ function go(id,push=true){
   if(id==='stores') storesUI();
   if(id==='map') openMap();
 }
-function back(){ if(navStack.length>1){ navStack.pop(); go(navStack[navStack.length-1]||'home',false); } else go('home',false); }
+window.addEventListener('popstate',e=>{
+  if(suppressPop) return;
+  const s=(e.state&&e.state.screen)||'home';
+  if(navStack.length>0){
+    navStack.pop();
+    if(navStack.length===0) navStack.push('home');
+  }
+  go(s,false);
+});
+function back(){
+  if(navStack.length>1){
+    suppressPop=true;
+    history.back();
+    setTimeout(()=>{suppressPop=false;},0);
+  } else { go('home',false); }
+}
 function setFlt(i){ flt=i; chips(); grid(); go('home'); }
 function chips(){
   $('#chips').innerHTML =
@@ -493,7 +546,16 @@ function badge(){ $('#badge').textContent=Object.values(cart).reduce((a,b)=>a+b,
 function totals(){ let sub=0,happy=0;
   Object.entries(cart).forEach(([id,c])=>{ const p=P.find(x=>x.id==id); sub+=p.p*c; if(HH()&&p.f===2) happy+=p.p*c*0.2; });
   const coup=CODES[coupon]?Math.round((sub-happy)*CODES[coupon]/100):0;
-  return {sub,happy,coup,grand:sub-happy-coup+POSET}; }
+  return {sub,happy,coup,rewardUse:(useReward?rewards:0),grand:sub-happy-coup+POSET}; }
+function rewardUI(){
+  const row=$('#rew-row'); const btn=$('#rew-btn'); const info=$('#rew-info');
+  if(rewards>0){ row.style.display='flex';
+    info.textContent=rewards>1?`${rewards} hediyen var`:'';
+    btn.classList.toggle('on',useReward);
+    btn.innerHTML=useReward?`✓ Hediye kullanılıyor (${rewards} adet)`:`🎁 Hediye simit kullan (${rewards})`;
+  } else { row.style.display='none'; useReward=false; }
+}
+function toggleReward(){ useReward=!useReward; rewardUI(); coSum(); }
 function cartUI(){
   const ids=Object.keys(cart);
   if(!ids.length){ $('#cart-body').innerHTML=`<div style="text-align:center;padding:50px 0">
@@ -512,6 +574,7 @@ function cartUI(){
     <div class="trow"><span>Ara toplam</span><span>₺${t.sub-t.happy}</span></div>
     <div class="trow"><span>Poşet (Çevre Kanunu)</span><span>₺${POSET}</span></div>
     <div style="display:flex;justify-content:space-between;padding:10px 4px 14px;font:700 15px var(--ui)"><span>Toplam</span><span class="price" style="font-size:18px">₺${t.grand}</span></div>
+    ${rewards>0?`<div class="script" style="text-align:center;font-size:18px">Sipariş adımında 🎁 hediye simit kullanabilirsin</div>`:''}
     <button class="btn primary block" onclick="go('checkout')">Siparişe Geç</button>`;
 }
 function reorder(){ const o=orders[orders.length-1]; cart={}; o.items.forEach(it=>cart[it.id]=it.c); sc(); badge(); cartUI(); }
@@ -520,9 +583,14 @@ function setPay(p){ pay=p; $('#p-nakit').classList.toggle('on',p==='nakit'); $('
 function applyCode(){ const c=$('#co-code').value.trim().toUpperCase();
   if(CODES[c]){ coupon=c; alert('Kupon uygulandı: %'+CODES[c]+' indirim 🎉'); } else { coupon=''; alert('Bu kod geçerli değil 🥺'); } coSum(); }
 function coSum(){ const t=totals();
+  let giftLines='';
+  if(t.rewardUse>0){
+    for(let i=0;i<t.rewardUse;i++) giftLines+=`<div class="trow gift"><span>🎁 HEDİYE SİMİT (bizden)</span><span>₺0</span></div>`;
+  }
   $('#co-sum').innerHTML=`<div class="trow"><span>Ara toplam</span><span>₺${t.sub}</span></div>
     ${t.happy?`<div class="trow"><span>🌙 Mutlu saat</span><span>-₺${t.happy}</span></div>`:''}
     ${t.coup?`<div class="trow"><span>🎟 Kupon (${coupon})</span><span>-₺${t.coup}</span></div>`:''}
+    ${giftLines}
     <div class="trow"><span>Poşet</span><span>₺${POSET}</span></div>
     <div class="trow" style="color:var(--text1);font-weight:800"><span>TOPLAM</span><span>₺${t.grand}</span></div>`; }
 function submitOrder(){
@@ -534,14 +602,20 @@ function submitOrder(){
   if(userLoc) txt+=`📍 Konum pini: https://maps.google.com/?q=${userLoc.lat},${userLoc.lng}${userLoc.addr?' · Tarif: '+userLoc.addr:''}\n`;
   txt+=`---\n`;
   Object.entries(cart).forEach(([id,c])=>{ const p=P.find(x=>x.id==id); txt+=`${c}x ${p.n} = ₺${p.p*c}\n`; });
+  if(t.rewardUse>0){ for(let i=0;i<t.rewardUse;i++) txt+=`🎁 HEDİYE SİMİT (bizden) = ₺0\n`; }
   txt+=`---\nAra: ₺${t.sub}\n`;
   if(t.happy) txt+=`Mutlu saat: -₺${t.happy}\n`;
   if(t.coup) txt+=`Kupon ${coupon}: -₺${t.coup}\n`;
   txt+=`Poşet: ₺${POSET}\n*TOPLAM: ₺${t.grand}*`;
-  orders.push({code,t:Date.now(),total:t.grand,items:Object.entries(cart).map(([id,c])=>({id:+id,c}))});
+  orders.push({code,t:Date.now(),total:t.grand,items:Object.entries(cart).map(([id,c])=>({id:+id,c})),rewardUsed:t.rewardUse});
   localStorage.cs_orders=JSON.stringify(orders);
   stamps++; localStorage.cs_stamps=stamps;
-  cart={}; sc(); badge(); coupon='';
+  // 10 kaşe → +1 hediye, sayaç 0'a döner
+  if(stamps>=10){ stamps=0; rewards++; localStorage.cs_rewards=rewards;
+    localStorage.cs_stamps=stamps; showToast('🎁 1 hediye simit kazandın!'); }
+  // Kullanılan hediyeleri düş
+  if(useReward&&t.rewardUse>0){ rewards=Math.max(0,rewards-t.rewardUse); localStorage.cs_rewards=rewards; }
+  cart={}; sc(); badge(); coupon=''; useReward=false;
   window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(txt)); go('track');
 }
 function trackUI(){
@@ -551,9 +625,10 @@ function trackUI(){
     const st=['Sipariş alındı','Mutfak hazırlıyor','Fırından çıktı / yolda','Teslim edildi 🎉'];
     const on=el>=20?4:el>=8?3:el>=2?2:1;
     const eta=new Date(o.t+20*60000).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
+    const gift=o.rewardUsed?` · 🎁 ${o.rewardUsed} hediye kullanıldı`:'';
     return `<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:14px;margin-bottom:12px">
       <div style="display:flex;justify-content:space-between;font:700 14px var(--ui)"><span>${o.code}</span><span class="price">₺${o.total}</span></div>
-      <div style="font-size:11px;color:var(--text2);margin-bottom:8px">${Math.max(0,Math.round(el))} dk önce · tahmini teslim ${eta}</div>
+      <div style="font-size:11px;color:var(--text2);margin-bottom:8px">${Math.max(0,Math.round(el))} dk önce · tahmini teslim ${eta}${gift}</div>
       <div class="tl">${st.map((s,i)=>`<div class="${i<on?'on':''}"><i></i>${s}</div>`).join('')}</div>
       <div style="display:flex;gap:8px;margin-top:8px">
         <button class="btn mini ghost" onclick="reorderOf('${o.code}')">🔁 Tekrarla</button>
@@ -562,6 +637,9 @@ function trackUI(){
 }
 function cancelOrder(code){ if(!confirm(code+' iptal edilsin mi?')) return;
   const i=orders.findIndex(o=>o.code===code); if(i<0) return;
+  const o=orders[i];
+  if(o.rewardUsed){ rewards+=o.rewardUsed; localStorage.cs_rewards=rewards; }
+  stamps=Math.max(0,stamps-1); localStorage.cs_stamps=stamps;
   orders.splice(i,1); localStorage.cs_orders=JSON.stringify(orders);
   window.open('https://wa.me/'+WA+'?text='+encodeURIComponent('*SİPARİŞ İPTALİ* '+code)); trackUI(); }
 function reorderOf(code){ const o=orders.find(x=>x.code===code); if(!o) return;
@@ -658,7 +736,7 @@ function mapHere(){ if(!navigator.geolocation) return alert('Konum desteklenmiyo
 function mapDrop(){ setPin(map.getCenter()); }
 function mapSave(){ if(!userLoc) return alert('Önce haritada bir pin bırak 📍');
   userLoc.addr=$('#map-note').value.trim(); localStorage.cs_pin=JSON.stringify(userLoc);
-  showToast('Pin kaydedildi 📍'); go(mapReturn||'checkout'); }
+  showToast('Pin kaydedildi 📍'); back(); }
 function hav(a,b,c,d){const R=6371,r=x=>x*Math.PI/180;
   const s=Math.sin(r(c-a)/2)**2+Math.cos(r(a))*Math.cos(r(c))*Math.sin(r(d-b)/2)**2;
   return Math.round(2*R*Math.asin(Math.sqrt(s))*10)/10;}
@@ -677,10 +755,16 @@ function storesUI(){
 }
 function profUI(){
   $('#pr-name').textContent=prof?prof.name:'Misafir';
-  $('#st-count').textContent=(stamps%10)+' / 10 kaşe';
-  $('#stamps').innerHTML=Array.from({length:10},(_,i)=>`<i class="${i<stamps%10?'on':''}"></i>`).join('');
+  $('#st-count').textContent=`${stamps} / 10 kaşe`;
+  const stampHTML=Array.from({length:10},(_,i)=>`<i class="${i<stamps?'on':''}"></i>`).join('');
+  const giftHTML=rewards>0?`<i class="gift" style="margin-left:6px"></i><span style="font-size:11px;color:var(--caramel);font-weight:800;margin-left:2px">×${rewards} hediye</span>`:'';
+  $('#stamps').innerHTML=stampHTML+giftHTML;
   $('#pr-ord').textContent=orders.length; $('#pr-fav').textContent=fav.size;
   $('#pr-adr').textContent=addr.length; $('#pr-bd').textContent=bday.length;
+  const rbox=$('#pr-reward');
+  if(rewards>0){ rbox.style.display='block';
+    rbox.innerHTML=`<span class="reward-badge">🎁 ${rewards} hediye simitin var</span>`;
+  } else { rbox.style.display='none'; }
 }
 function setUI(){
   const p=prof||{};
@@ -696,7 +780,7 @@ function setBranch(b){ branch=b; localStorage.cs_branch=b; setUI(); statusYaz();
 function wipeCart(){ if(confirm('Sepet temizlensin mi?')){ cart={}; sc(); badge(); alert('Sepet temiz 🧺'); } }
 function wipeFav(){ if(confirm('Favoriler temizlensin mi?')){ fav.clear(); localStorage.cs_fav='[]'; grid(); alert('Favoriler boş 🤍'); } }
 function resetApp(){ if(confirm('Tüm uygulama verileri sıfırlanacak. Emin misin?')){
-  ['cs_cart','cs_fav','cs_orders','cs_stamps','cs_branch','cs_addr','cs_addef','cs_bday','cs_set','cs_pin','cs_profile','cs_guest','cs_screen'].forEach(k=>localStorage.removeItem(k));
+  ['cs_cart','cs_fav','cs_orders','cs_stamps','cs_rewards','cs_branch','cs_addr','cs_addef','cs_bday','cs_set','cs_pin','cs_profile','cs_guest','cs_screen','cs_hideinstall'].forEach(k=>localStorage.removeItem(k));
   location.reload(); } }
 function logout(){ if(confirm('Çıkış yapılsın mı? (Sepet temizlenir)')){
   cart={}; sc(); badge(); coupon=''; localStorage.cs_guest='1'; prof=null; go('home'); alert('Görüşmek üzere 🥐'); } }
@@ -717,36 +801,65 @@ function shade(hex,f){const n=parseInt(hex.slice(1),16);let r=(n>>16)&255,g=(n>>
  r=Math.round(r*f);g=Math.round(g*f);b=Math.round(b*f);
  return '#'+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1);}
 function statusYaz(){
- if(typeof BR==='undefined')return;
- const o=(typeof CFG!=='undefined'&&CFG.open)?toMin(CFG.open):525;
- const c=(typeof CFG!=='undefined'&&CFG.close)?toMin(CFG.close):1440;
- const m=new Date().getHours()*60+new Date().getMinutes();
- const open = c>o ? (m>=o&&m<c) : (m>=o||m<c);
- const el=$('#status'); if(!el)return;
- el.style.color=open?'var(--pistachio)':'var(--primary)';
- el.innerHTML='<i></i>'+(open?'Açık · kapanış '+(CFG?CFG.close:'24:00'):'Kapalı · açılış '+(CFG?CFG.open:'08:45'))+' · '+BR[branch].n;
+  if(typeof BR==='undefined')return;
+  const o=(typeof CFG!=='undefined'&&CFG.open)?toMin(CFG.open):525;
+  const c=(typeof CFG!=='undefined'&&CFG.close)?toMin(CFG.close):1440;
+  const m=new Date().getHours()*60+new Date().getMinutes();
+  const open = c>o ? (m>=o&&m<c) : (m>=o||m<c);
+  const el=$('#status'); if(!el)return;
+  el.style.color=open?'var(--pistachio)':'var(--primary)';
+  el.innerHTML='<i></i>'+(open?'Açık · kapanış '+(CFG?CFG.close:'24:00'):'Kapalı · açılış '+(CFG?CFG.open:'08:45'))+' · '+BR[branch].n;
 }
 (function applyCFG(){
- if(typeof CFG==='undefined')return;
- document.title=CFG.name+' — Pasta & Fırın';
- const st=$('#sc-splash .script'); if(st)st.textContent=CFG.tag;
- const rs=document.documentElement.style;
- rs.setProperty('--primary',CFG.primary);
- rs.setProperty('--primary-pressed',shade(CFG.primary,0.8));
- rs.setProperty('--primary-soft',CFG.primary+'22');
- rs.setProperty('--bg',CFG.bg);
- document.querySelectorAll('a[href*="instagram.com"]').forEach(a=>a.href=CFG.ig);
+  if(typeof CFG==='undefined')return;
+  document.title=CFG.name+' — Pasta & Fırın';
+  const st=$('#sc-splash .script'); if(st)st.textContent=CFG.tag;
+  const rs=document.documentElement.style;
+  rs.setProperty('--primary',CFG.primary);
+  rs.setProperty('--primary-pressed',shade(CFG.primary,0.8));
+  rs.setProperty('--primary-soft',CFG.primary+'22');
+  rs.setProperty('--bg',CFG.bg);
+  document.querySelectorAll('a[href*="instagram.com"]').forEach(a=>a.href=CFG.ig);
 })();
+/* ---- KURULUM (PWA) + INSTAGRAM/WHATSAPP REHBERİ ---- */
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e;
+  if(!localStorage.cs_hideinstall) $('#install-bar').style.display='flex'; });
+window.addEventListener('appinstalled',()=>{ $('#install-bar').style.display='none'; localStorage.cs_hideinstall='1'; });
+function installApp(){
+  if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{deferredPrompt=null;$('#install-bar').style.display='none';}); return; }
+  alert('Chrome ⋮ → "Ana ekrana ekle / Uygulamayı yükle"; iPhone: Paylaş → Ana Ekrana Ekle 📲');
+}
+function hideInstall(){ $('#install-bar').style.display='none'; localStorage.cs_hideinstall='1'; }
+setTimeout(()=>{ if(!deferredPrompt&&!localStorage.cs_hideinstall&&$('#install-bar').style.display!=='flex'){
+  $('#install-bar').style.display='flex'; $('#install-bar').querySelector('b').textContent='Chrome ⋮ → Ana ekrana ekle'; } },5000);
+const UA=navigator.userAgent||'';
+const inApp=/instagram|fbav|fban|facebook|twitter|linkedin|whatsapp|line\/|tiktok/i.test(UA);
+const isIOS=/iphone|ipad|ipod/i.test(UA);
+function copyLink(){
+  if(navigator.clipboard) navigator.clipboard.writeText(location.href).then(()=>showToast('Link kopyalandı 🔗')).catch(()=>prompt('Linki kopyala:',location.href));
+  else prompt('Linki kopyala:',location.href);
+}
+if(inApp){ const m=$('#inapp-mask');
+  if(m){ m.style.display='block';
+    $('#inapp-text').innerHTML=isIOS
+      ?'Instagram\'ın kendi tarayıcısındasın.<br>Üstten <b>⋯</b> → <b>"Safari\'de Aç"</b> de.<br>Açılan sayfada <b>Paylaş → Ana Ekrana Ekle</b> ile tek dokunuşla cebine iner.'
+      :'Instagram\'ın mini tarayıcısındasın.<br>Üstten <b>⋮</b> → <b>"Tarayıcıda aç / Chrome\'da aç"</b> de.<br>Sayfa açılınca <b>Kur</b> butonu çıkar, tek dokunuşla ana ekranına iner.';
+  } }
+/* ---- BAŞLANGIÇ ---- */
 loadLogos(); chips(); grid(); cats(); badge(); todayRow(); statusYaz();
-/* ---- BAŞLANGIÇ: yenileyince kaldığın yerden ---- */
 (function start(){
   let target;
-  const has=localStorage.cs_screen;
-  if(!prof && !localStorage.cs_guest) target='reg';
-  else target=has||'home';
+  const hash=location.hash.replace('#','');
+  if(hash&&document.getElementById('sc-'+hash)) target=hash;
+  else if(!prof && !localStorage.cs_guest) target='reg';
+  else target=localStorage.cs_screen||'home';
   if(target==='detail'||!$('#sc-'+target)) target='home';
   navStack=[target];
-  if(has){ go(target,false); }
+  suppressPop=true;
+  history.replaceState({screen:target},'','#'+target);
+  setTimeout(()=>{suppressPop=false;},0);
+  if(localStorage.cs_screen){ go(target,false); }
   else { setTimeout(()=>go(target,false),1400); }
 })();
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
